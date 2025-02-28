@@ -15,19 +15,35 @@
 <link rel="stylesheet" href="{@$__wcf->getPath()}js/3rdParty/leaflet/leaflet.css" />
 <script data-relocate="true">
     require(['3rdParty/leaflet/leaflet'], function(L) {
-            var map{$openStreetMapsElementID} = L.map('map{$openStreetMapsElementID}').setView([
-            {$openStreetMapsElements[$openStreetMapsElementID]['lat']},
-            {$openStreetMapsElements[$openStreetMapsElementID]['lng']}
-        ], {GOOGLE_MAPS_ZOOM});
-
-        {*
-        L.tileLayer('https://{ldelim}s{rdelim}.tile.openstreetmap.org/{ldelim}z{rdelim}/{ldelim}x{rdelim}/{ldelim}y{rdelim}.png', {
+        var osm = L.tileLayer('https://{ldelim}s{rdelim}.tile.openstreetmap.org/{ldelim}z{rdelim}/{ldelim}x{rdelim}/{ldelim}y{rdelim}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map{$openStreetMapsElementID});
-        *}
+        });
 
-        L.tileLayer('https://sgx.geodatenzentrum.de/wmts_topplus_open/tile/1.0.0/web_light_grau/default/WEBMERCATOR/{ldelim}z{rdelim}/{ldelim}y{rdelim}/{ldelim}x{rdelim}.png', {
+        var web = L.tileLayer('https://sgx.geodatenzentrum.de/wmts_topplus_open/tile/1.0.0/web/default/WEBMERCATOR/{ldelim}z{rdelim}/{ldelim}y{rdelim}/{ldelim}x{rdelim}.png', {
             attribution: '&copy; <a href="http://www.bkg.bund.de/">Bundesamt für Kartographie und Geodäsie ({time time=TIME_NOW type='custom' format='Y'})</a>'
+        });
+        var web_grau = L.tileLayer('https://sgx.geodatenzentrum.de/wmts_topplus_open/tile/1.0.0/web_grau/default/WEBMERCATOR/{ldelim}z{rdelim}/{ldelim}y{rdelim}/{ldelim}x{rdelim}.png', {
+            attribution: '&copy; <a href="http://www.bkg.bund.de/">Bundesamt für Kartographie und Geodäsie ({time time=TIME_NOW type='custom' format='Y'})</a>'
+        });
+        var web_light = L.tileLayer('https://sgx.geodatenzentrum.de/wmts_topplus_open/tile/1.0.0/web_light/default/WEBMERCATOR/{ldelim}z{rdelim}/{ldelim}y{rdelim}/{ldelim}x{rdelim}.png', {
+            attribution: '&copy; <a href="http://www.bkg.bund.de/">Bundesamt für Kartographie und Geodäsie ({time time=TIME_NOW type='custom' format='Y'})</a>'
+        });
+        var web_light_grau = L.tileLayer('https://sgx.geodatenzentrum.de/wmts_topplus_open/tile/1.0.0/web_light_grau/default/WEBMERCATOR/{ldelim}z{rdelim}/{ldelim}y{rdelim}/{ldelim}x{rdelim}.png', {
+            attribution: '&copy; <a href="http://www.bkg.bund.de/">Bundesamt für Kartographie und Geodäsie ({time time=TIME_NOW type='custom' format='Y'})</a>'
+        });
+
+        var map{$openStreetMapsElementID} = L.map('map{$openStreetMapsElementID}', {
+            center: [{$openStreetMapsElements[$openStreetMapsElementID]['lat']}, {$openStreetMapsElements[$openStreetMapsElementID]['lng']}],
+            zoom: {GOOGLE_MAPS_ZOOM},
+            layers: [web_light_grau]
+        });
+
+        var layerControl = L.control.layers({
+            "OpenStreetMap": osm,
+            "TopPlusOpen": web,
+            "TopPlusOpen Grau": web_grau,
+            "TopPlusOpen Light": web_light,
+            "TopPlusOpen Light Grau": web_light_grau
         }).addTo(map{$openStreetMapsElementID});
 
         {foreach from=$openStreetMapsElements[$openStreetMapsElementID]['marker'] item=marker}
@@ -40,8 +56,6 @@
 </script>
 
 {if $openStreetMapsHidden}
-    {*
     {include file='messageUserConsent' host="tile.openstreetmap.org" url="https://tile.openstreetmap.org/" target='map'|concat:$openStreetMapsElementID sandbox=true}
-    *}
     {include file='messageUserConsent' host="sgx.geodatenzentrum.de" url="http://www.bkg.bund.de/" target='map'|concat:$openStreetMapsElementID sandbox=true}
 {/if}
