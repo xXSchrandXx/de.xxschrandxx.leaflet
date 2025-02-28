@@ -8,7 +8,7 @@
     id="map{$openStreetMapsElementID}" 
     class="googleMap" 
     zoom="{GOOGLE_MAPS_ZOOM}" 
-    {if $openStreetMapsElements[$openStreetMapsElementID]['style']|isset && !$openStreetMapsElements[$openStreetMapsElementID]['style']|empty}style="{$openStreetMapsElements[$openStreetMapsElementID]['style']}" {/if}
+    style="z-index: 0{if $openStreetMapsElements[$openStreetMapsElementID]['style']|isset && !$openStreetMapsElements[$openStreetMapsElementID]['style']|empty}; {$openStreetMapsElements[$openStreetMapsElementID]['style']}{/if}"
     {if $openStreetMapsElements[$openStreetMapsElementID]['hidden']|isset && $openStreetMapsElements[$openStreetMapsElementID]['hidden']}hidden{/if}>
 </div>
 

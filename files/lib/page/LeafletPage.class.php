@@ -13,32 +13,52 @@ class LeafletPage extends AbstractPage
     {
         parent::assignVariables();
 
-        $lat = 53;
-        $lng = 9;
+        $lat1 = 48.400002;
+        $lng1 = 9.983333;
+        $lat2 = 53.143890;
+        $lng2 = 8.213889;
 
         WCF::getTPL()->assign([
             'openStreetMapsElements' => [
                 1 => [
-                    'lat' => $lat,
-                    'lng' => $lng,
+                    'lat' => $lat1,
+                    'lng' => $lng1,
                     'marker' => [
                         0 => [
-                            'lat' => $lat,
-                            'lng' => $lng,
+                            'lat' => $lat1,
+                            'lng' => $lng1,
                             'popup' => 'I am a marker',
                             'open' => true
                         ],
                         1 => [
-                            'lat' => $lat + 0.1,
-                            'lng' => $lng,
+                            'lat' => $lat1 + 0.1,
+                            'lng' => $lng1,
                             'popup' => 'I am another marker',
                             'open' => false
                         ]
                     ],
-                    'style' => "width: 500px; height: 400px;"
+                    'style' => "width: 100%; height: 500px;"
+                ],
+                2 => [
+                    'lat' => $lat2,
+                    'lng' => $lng2,
+                    'marker' => [
+                        0 => [
+                            'lat' => $lat2,
+                            'lng' => $lng2,
+                            'popup' => 'I am a marker',
+                            'open' => true
+                        ],
+                        1 => [
+                            'lat' => $lat2 - 0.1,
+                            'lng' => $lng2,
+                            'popup' => 'I am another marker',
+                            'open' => false
+                        ]
+                    ],
+                    'style' => "width: 100%; height: 500px;"
                 ]
-            ],
-            'openStreetMapsElementID' => 1
+            ]
         ]);
     }
 }
