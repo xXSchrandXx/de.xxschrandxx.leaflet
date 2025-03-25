@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data
+	xmlns="https://www.woltlab.com"
+	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/6.0/option.xsd"
+>
+	<import>
+		<options>
+			<option name="LEAFLET_DEFAULT_LAYER">
+				<categoryname>general.system.googleMaps</categoryname>
+				<optiontype>select</optiontype>
+				<defaultvalue>openstreetmap</defaultvalue>
+				<selectoptions>openstreetmap:wcf.acp.option.leaflet_default_layer.opensteetmap
+topplus_open:wcf.acp.option.leaflet_default_layer.topplus_open
+topplus_open_grau:wcf.acp.option.leaflet_default_layer.topplus_open_grau
+topplus_open_light:wcf.acp.option.leaflet_default_layer.topplus_open_light
+topplus_open_light_grau:wcf.acp.option.leaflet_default_layer.topplus_open_light_grau
+				</selectoptions>
+			</option>
+			<option name="LEAFLET_CUSTOM_LAYER_LINK">
+				<categoryname>general.system.googleMaps</categoryname>
+				<optiontype>text</optiontype>
+			</option>
+			<option name="LEAFLET_CUSTOM_LAYER_OPTIONS">
+				<categoryname>general.system.googleMaps</categoryname>
+				<optiontype>textarea</optiontype>
+			</option>
+		</options>
+	</import>
+</data>
