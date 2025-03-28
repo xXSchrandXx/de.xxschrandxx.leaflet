@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language languagecode="de"
+	xmlns="https://www.woltlab.com"
+	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/5.5/language.xsd">
+	<category name="wcf.acp.option">
+		<item name="wcf.acp.option.leaflet_default_layer"><![CDATA[Hintergrundkarte]]></item>
+		<item name="wcf.acp.option.leaflet_default_layer.openstreetmap"><![CDATA[Openstreetmap]]></item>
+		<item name="wcf.acp.option.leaflet_default_layer.topplus_open"><![CDATA[TopPlusOpen]]></item>
+		<item name="wcf.acp.option.leaflet_default_layer.topplus_open_grau"><![CDATA[TopPlusOpen Grau]]></item>
+		<item name="wcf.acp.option.leaflet_default_layer.topplus_open_light"><![CDATA[TopPlusOpen Light]]></item>
+		<item name="wcf.acp.option.leaflet_default_layer.topplus_open_light_grau"><![CDATA[TopPlusOpen Light Grau]]></item>
+		<item name="wcf.acp.option.leaflet_default_layer.custom"><![CDATA[Eigen]]></item>
+		<item name="wcf.acp.option.leaflet_custom_layer_link"><![CDATA[URL-Vorlage]]></item>
+		<item name="wcf.acp.option.leaflet_custom_layer_link.description"><![CDATA[{s} steht für eine der verfügbaren Subdomänen (wird sequenziell verwendet, um die Anzahl paralleler Browseranfragen pro Domäne zu begrenzen; Subdomänenwerte werden in den Optionen angegeben; a, b oder c sind standardmäßig vorgegeben und können weggelassen werden), {z} – Zoomstufe, {x} und {y} – Kachelkoordinaten. {r} kann verwendet werden, um der URL „@2x“ hinzuzufügen und Retina-Kacheln zu laden. <a href="https://leafletjs.com/reference.html#tilelayer">leafletjs</a>]]></item>
+		<item name="wcf.acp.option.leaflet_custom_layer_host"><![CDATA[Anzeigehostname]]></item>
+		<item name="wcf.acp.option.leaflet_custom_layer_url"><![CDATA[Verlinkung]]></item>
+	</category>
+	<category name="wcf.global">
+		<item name="wcf.global.leaflet.copy.openstreetmap"><![CDATA[&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>]]></item>
+		<item name="wcf.global.leaflet.copy.topplus_open"><![CDATA[&copy; <a href="http://www.bkg.bund.de/">Bundesamt für Kartographie und Geodäsie ({time time=TIME_NOW type='custom' format='Y'})</a>]]></item>
+		<item name="wcf.global.leaflet.copy.topplus_open_grau"><![CDATA[&copy; <a href="http://www.bkg.bund.de/">Bundesamt für Kartographie und Geodäsie ({time time=TIME_NOW type='custom' format='Y'})</a>]]></item>
+		<item name="wcf.global.leaflet.copy.topplus_open_light"><![CDATA[&copy; <a href="http://www.bkg.bund.de/">Bundesamt für Kartographie und Geodäsie ({time time=TIME_NOW type='custom' format='Y'})]]></item>
+		<item name="wcf.global.leaflet.copy.topplus_open_light_grau"><![CDATA[&copy; <a href="http://www.bkg.bund.de/">Bundesamt für Kartographie und Geodäsie ({time time=TIME_NOW type='custom' format='Y'})</a>]]></item>
+		<item name="wcf.global.leaflet.copy.custom"><![CDATA[Placeholder]]></item>
+	</category>
+</language>

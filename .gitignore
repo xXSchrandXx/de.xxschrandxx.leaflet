@@ -1,6 +1,5 @@
 node_modules/
-files/js/3rdParty/leaflet/*
-!files/js/3rdParty/leaflet/.download
+files/js/*
 files/lib/system/api/
 
 *.tar

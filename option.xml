@@ -15,15 +15,19 @@ topplus_open:wcf.acp.option.leaflet_default_layer.topplus_open
 topplus_open_grau:wcf.acp.option.leaflet_default_layer.topplus_open_grau
 topplus_open_light:wcf.acp.option.leaflet_default_layer.topplus_open_light
 topplus_open_light_grau:wcf.acp.option.leaflet_default_layer.topplus_open_light_grau
-				</selectoptions>
+custom:wcf.acp.option.leaflet_default_layer.custom</selectoptions>
 			</option>
 			<option name="LEAFLET_CUSTOM_LAYER_LINK">
 				<categoryname>general.system.googleMaps</categoryname>
+				<optiontype>URL</optiontype>
+			</option>
+			<option name="LEAFLET_CUSTOM_LAYER_HOST">
+				<categoryname>general.system.googleMaps</categoryname>
 				<optiontype>text</optiontype>
 			</option>
-			<option name="LEAFLET_CUSTOM_LAYER_OPTIONS">
+			<option name="LEAFLET_CUSTOM_LAYER_URL">
 				<categoryname>general.system.googleMaps</categoryname>
-				<optiontype>textarea</optiontype>
+				<optiontype>text</optiontype>
 			</option>
 		</options>
 	</import>
