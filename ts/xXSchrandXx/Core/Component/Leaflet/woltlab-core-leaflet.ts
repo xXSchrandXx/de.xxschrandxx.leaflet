@@ -3,6 +3,7 @@
  */
 
 import * as L from "leaflet";
+import {getPhrase} from "WoltLabSuite/Core/Language";
 
 type Bounds = {
     southWest: {
@@ -96,10 +97,14 @@ export class WoltlabCoreLeafletElement extends HTMLElement {
 
         const defaultTile = this.defaultTile;
         const copy = this.defaultTileCopy;
-        if (defaultTile && copy) {
-            L.tileLayer(defaultTile, {
-                attribution: copy,
-            }).addTo(this.#map!);
+        var options = {};
+        if (copy) {
+            options = {
+                attribution: getPhrase(copy),
+            };
+        }
+        if (defaultTile) {
+            L.tileLayer(defaultTile, options).addTo(this.#map!);
         }
     }
 
