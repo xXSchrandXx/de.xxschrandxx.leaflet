@@ -5,7 +5,7 @@
 {/if}
 
 <woltlab-core-leaflet 
-    id='map{$leafletElementID}' 
+    id='{$leafletElementID}' 
     class='googleMap' 
     defaulttile='{*
 *}{if LEAFLET_DEFAULT_LAYER == 'openstreetmap'}{*
@@ -33,13 +33,11 @@
 
 {if $leafletHidden}
     {if LEAFLET_DEFAULT_LAYER == 'openstreetmap'}
-        {include file='messageUserConsent' host='tile.openstreetmap.org' url='https://tile.openstreetmap.org/' target='map'|concat:$leafletElementID sandbox=true}
+        {include file='messageUserConsent' host='tile.openstreetmap.org' url='https://tile.openstreetmap.org/' target=$leafletElementID sandbox=true}
     {elseif LEAFLET_DEFAULT_LAYER|str_starts_with:'topplus_open'}
-        {include file='messageUserConsent' host='sgx.geodatenzentrum.de' url='http://www.bkg.bund.de/' target='map'|concat:$leafletElementID sandbox=true}
-{*
+        {include file='messageUserConsent' host='sgx.geodatenzentrum.de' url='http://www.bkg.bund.de/' target=$leafletElementID sandbox=true}
     {else}
-        {include file='messageUserConsent' host='{LEAFLET_CUSTOM_LAYER_HOST}' url='{LEAFLET_CUSTOM_LAYER_URL}' target='map'|concat:$leafletElementID sandbox=true}
-*}
+        {include file='messageUserConsent' host="{LEAFLET_CUSTOM_LAYER_HOST}" url="{LEAFLET_CUSTOM_LAYER_URL}" target=$leafletElementID sandbox=true}
     {/if}
 {/if}
 

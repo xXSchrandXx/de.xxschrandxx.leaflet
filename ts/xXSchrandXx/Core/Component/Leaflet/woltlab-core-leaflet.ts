@@ -3,18 +3,8 @@
  */
 
 import * as L from "leaflet";
+import * as M from "./Marker";
 import {getPhrase} from "WoltLabSuite/Core/Language";
-
-type Bounds = {
-    southWest: {
-        latitude: number;
-        longitude: number;
-    };
-    northEast: {
-        latitude: number;
-        longitude: number;
-    };
-};
 
 export class WoltlabCoreLeafletElement extends HTMLElement {
     #map?: L.Map;
@@ -92,10 +82,16 @@ export class WoltlabCoreLeafletElement extends HTMLElement {
         }
     }
 
-    async #setTileLayer(): Promise<void> {
+    async #setTileLayer(tile?: string): Promise<void> {
         await this.#mapLoaded;
 
-        const defaultTile = this.defaultTile;
+        var defaultTile;
+        if (tile) {
+            defaultTile = tile;
+        } else {
+            defaultTile = this.defaultTile;
+
+        }
         const copy = this.defaultTileCopy;
         var options = {};
         if (copy) {
@@ -108,27 +104,37 @@ export class WoltlabCoreLeafletElement extends HTMLElement {
         }
     }
 
-    async #setBounds(): Promise<void> {
+    async #setBounds(bounds?: L.LatLngBounds | null): Promise<void> {
         await this.#mapLoaded;
 
-        const bounds = this.bounds;
+        var b;
         if (bounds) {
-            this.#map!.fitBounds(
-                new L.LatLngBounds(
-                    new L.LatLng(bounds.southWest.latitude, bounds.southWest.longitude),
-                    new L.LatLng(bounds.northEast.latitude, bounds.northEast.longitude),
-                ),
-            );
+            b = bounds;
+        } else {
+            this.bounds;
+        }
+        if (b) {
+            this.#map!.fitBounds(b);
         }
     }
 
-    async #locate(): Promise<void> {
+    async #locate(locate?: boolean): Promise<void> {
         await this.#mapLoaded;
 
-        const locate = this.hasAttribute("access-user-location");
-        if (locate) {
+        var l;
+        if (l) {
+            l = locate;
+        } else {
+            l = this.hasAttribute("access-user-location");
+        }
+        if (l) {
             this.#map!.locate({setView: true});
         }
+    }
+
+    async #addMarker(lat: number, lng: number, title?: string, popup?: L.Content, focus?: boolean, ): Promise<L.Marker> {
+        await this.#mapLoaded;
+        return M.addMarker(this, lat, lng, title, popup, focus);
     }
 
     #validate(): void {
@@ -163,9 +169,9 @@ export class WoltlabCoreLeafletElement extends HTMLElement {
         return this.getAttribute("zoom") ? parseInt(this.getAttribute("zoom")!) : 13;
     }
 
-    get bounds(): Bounds | null {
+    get bounds(): L.LatLngBounds | null {
         if (this.getAttribute("bounds")) {
-            return JSON.parse(this.getAttribute("bounds")!) as Bounds;
+            return JSON.parse(this.getAttribute("bounds")!) as L.LatLngBounds;
         }
 
         return null;

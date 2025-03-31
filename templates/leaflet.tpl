@@ -18,20 +18,23 @@
 {assign var='googleMapsBounds' value=null}
 {assign var='googleMapsLat' value=null}
 {assign var='googleMapsLng' value=null}
+<br>
+<p>Map5: Googlemaps</p>
+{include file='googleMapsElement' googleMapsElementID=4 googleMapsBounds='{literal}{"southWest": {"latitude": 45.4, "longitude": 9.98}, "northEast": {"latitude": 45.41, "longitude": 9.99}}{/literal}'}
 
 <script data-relocate="true">
 require(["xXSchrandXx/Core/Component/Leaflet/Marker"], function(M) {
     // Map1
-    M.addDraggableMarker(document.getElementById('map1'));
+    M.addDraggableMarker(document.getElementById('1'));
 
     // Map2
-    M.addMarker(document.getElementById('map2'), 48.400002, 9.983333, 'Title', 'Description');
+    M.addMarker(document.getElementById('2'), 48.400002, 9.983333, 'Title', 'Description');
 
     // Map3
-    M.addMarker(document.getElementById('map2'), 48.400002, 9.983333, 'Title', 'Description');
+    M.addMarker(document.getElementById('3'), 48.400002, 9.983333, 'Title', 'Description');
 
     // Map4
-    M.addMarker(document.getElementById('map2'), 48.400002, 9.983333, 'Title', 'Description');
+    M.addMarker(document.getElementById('4'), 48.400002, 9.983333, 'Title', 'Description');
 });
 </script>
 

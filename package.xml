@@ -20,5 +20,7 @@
 	<instructions type="install">
 		<instruction type="file"/>
 		<instruction type="template"/>
+		<instruction type="option"/>
+		<instruction type="language"/>
 	</instructions>
 </package>
