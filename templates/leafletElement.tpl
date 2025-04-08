@@ -7,20 +7,7 @@
 <woltlab-core-leaflet 
     id='{$leafletElementID}' 
     class='googleMap' 
-    defaulttile='{*
-*}{if LEAFLET_DEFAULT_LAYER == 'openstreetmap'}{*
-    *}{literal}https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png{/literal}{*
-*}{elseif LEAFLET_DEFAULT_LAYER == 'topplus_open'}{*
-    *}{literal}https://sgx.geodatenzentrum.de/wmts_topplus_open/tile/1.0.0/web/default/WEBMERCATOR/{z}/{y}/{x}.png{/literal}{*
-*}{elseif LEAFLET_DEFAULT_LAYER == 'topplus_open_grau'}{*
-    *}{literal}https://sgx.geodatenzentrum.de/wmts_topplus_open/tile/1.0.0/web_grau/default/WEBMERCATOR/{z}/{y}/{x}.png{/literal}{*
-*}{elseif LEAFLET_DEFAULT_LAYER == 'topplus_open_light'}{*
-    *}{literal}https://sgx.geodatenzentrum.de/wmts_topplus_open/tile/1.0.0/web_light/default/WEBMERCATOR/{z}/{y}/{x}.png{/literal}{*
-*}{elseif LEAFLET_DEFAULT_LAYER == 'topplus_open_light_grau'}{*
-    *}{literal}https://sgx.geodatenzentrum.de/wmts_topplus_open/tile/1.0.0/web_light_grau/default/WEBMERCATOR/{z}/{y}/{x}.png{/literal}{*
-*}{else}{*
-    *}{LEAFLET_CUSTOM_LAYER_LINK}{*
-*}{/if}' 
+    defaulttile='{if !$defaultTile|empty}{$defaultTile}{else}{LEAFLET_DEFAULT_LAYER}{/if}' 
     defaulttilecopy='wcf.global.leaflet.copy.{LEAFLET_DEFAULT_LAYER}' 
     zoom='{if !$googleMapsZoom|empty}{$googleMapsZoom}{else}{GOOGLE_MAPS_ZOOM}{/if}' 
 	lat='{if !$googleMapsLat|empty}{$googleMapsLat}{else}{GOOGLE_MAPS_DEFAULT_LATITUDE}{/if}' 
@@ -28,6 +15,7 @@
     {if !$googleMapsBounds|empty}bounds='{$googleMapsBounds}' {/if}
     {if $leafletHidden}hidden {/if}
     {if !$accessUserLocation|empty}access-user-location {/if}
+    {if !$tileconnectdirect|empty}direct {/if}
     style='z-index: 0'>
 </woltlab-core-leaflet>
 

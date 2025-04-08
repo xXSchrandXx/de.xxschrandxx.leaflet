@@ -9,7 +9,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@woltlab/d.ts": "https://github.com/WoltLab/d.ts.git#51281749962192683d2b9d6a17388fb2298b4b62",
+    "@woltlab/d.ts": "https://github.com/WoltLab/d.ts/tree/6.1",
     "leaflet": "^1.9.4"
   }
 }

@@ -82,7 +82,7 @@ export class WoltlabCoreLeafletElement extends HTMLElement {
         }
     }
 
-    async #setTileLayer(tile?: string): Promise<void> {
+    async #setTileLayer(tile?: string, options: L.TileLayerOptions = {}): Promise<void> {
         await this.#mapLoaded;
 
         var defaultTile;
@@ -93,14 +93,36 @@ export class WoltlabCoreLeafletElement extends HTMLElement {
 
         }
         const copy = this.defaultTileCopy;
-        var options = {};
         if (copy) {
-            options = {
-                attribution: getPhrase(copy),
-            };
+            options.attribution = getPhrase(copy);
         }
         if (defaultTile) {
-            L.tileLayer(defaultTile, options).addTo(this.#map!);
+            if (this.direct) {
+                let url = "";
+                switch (defaultTile) {
+                    case 'openstreetmap':
+                        url = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+                        break;
+                    case 'topplus_open':
+                        url = "https://sgx.geodatenzentrum.de/wmts_topplus_open/tile/1.0.0/web/default/WEBMERCATOR/{z}/{y}/{x}.png";
+                        break;
+                    case 'topplus_open_grau':
+                        url = "https://sgx.geodatenzentrum.de/wmts_topplus_open/tile/1.0.0/web_grau/default/WEBMERCATOR/{z}/{y}/{x}.png";
+                        break;
+                    case 'topplus_open_light':
+                        url = "https://sgx.geodatenzentrum.de/wmts_topplus_open/tile/1.0.0/web_light/default/WEBMERCATOR/{z}/{y}/{x}.png";
+                        break;
+                    case 'topplus_open_light_grau':
+                        url = "https://sgx.geodatenzentrum.de/wmts_topplus_open/tile/1.0.0/web_light_grau/default/WEBMERCATOR/{z}/{y}/{x}.png";
+                        break;
+                    case 'custom':
+                        // TODO
+                        break;
+                }
+                L.tileLayer(url, options).addTo(this.#map!);
+            } else {
+                L.tileLayer(`${window.WSC_RPC_API_URL}xxschrandxx/leaflet/tile/{z}/{x}/{y}/${defaultTile}/{s}/{r}`, options).addTo(this.#map!);
+            }
         }
     }
 
@@ -175,6 +197,10 @@ export class WoltlabCoreLeafletElement extends HTMLElement {
         }
 
         return null;
+    }
+
+    get direct(): boolean {
+        return this.hasAttribute("direct");
     }
 }
 
