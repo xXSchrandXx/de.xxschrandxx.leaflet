@@ -116,7 +116,7 @@ export class WoltlabCoreLeafletElement extends HTMLElement {
                         url = "https://sgx.geodatenzentrum.de/wmts_topplus_open/tile/1.0.0/web_light_grau/default/WEBMERCATOR/{z}/{y}/{x}.png";
                         break;
                     case 'custom':
-                        // TODO
+                        url = this.customurl;
                         break;
                 }
                 L.tileLayer(url, options).addTo(this.#map!);
@@ -201,6 +201,10 @@ export class WoltlabCoreLeafletElement extends HTMLElement {
 
     get direct(): boolean {
         return this.hasAttribute("direct");
+    }
+
+    get customurl(): string {
+        return this.getAttribute("urltemplate") || "";
     }
 }
 

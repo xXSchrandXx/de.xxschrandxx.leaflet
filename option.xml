@@ -17,6 +17,17 @@ topplus_open_light:wcf.acp.option.leaflet_default_layer.topplus_open_light
 topplus_open_light_grau:wcf.acp.option.leaflet_default_layer.topplus_open_light_grau
 custom:wcf.acp.option.leaflet_default_layer.custom</selectoptions>
 			</option>
+			<option name="LEAFLET_DEFAULT_CONNECTION">
+				<categoryname>general.system.googleMaps</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>true</defaultvalue>
+				<enableoptions>!LEAFLET_ENABLE_CACHE</enableoptions>
+			</option>
+			<option name="LEAFLET_ENABLE_CACHE">
+				<categoryname>general.system.googleMaps</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>false</defaultvalue>
+			</option>
 			<option name="LEAFLET_CUSTOM_LAYER_LINK">
 				<categoryname>general.system.googleMaps</categoryname>
 				<optiontype>URL</optiontype>

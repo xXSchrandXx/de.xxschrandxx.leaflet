@@ -30,10 +30,9 @@ export function r(defaulttile: string, defaulttilecopy: string) {
         // Altes Element durch das neue ersetzen
         element.replaceWith(leafletElement);
     });
-
-    console.log("Alle <woltlab-core-google-maps> Elemente wurden ersetzt.");
 }
 
+/* TODO
 export function replaceGoogleMarker() {
-    // TODO
 }
+*/

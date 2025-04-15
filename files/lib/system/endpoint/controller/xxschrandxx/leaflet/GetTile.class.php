@@ -2,13 +2,13 @@
 
 namespace wcf\system\endpoint\controller\xxschrandxx\leaflet;
 
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
+use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use wcf\system\cache\builder\LeafletTileCacheBuilder;
 use wcf\system\endpoint\GetRequest;
 use wcf\system\endpoint\IController;
-use wcf\system\io\HttpFactory;
 
 #[GetRequest('/xxschrandxx/leaflet/tile/{z}/{x}/{y}[/{tile}[/{s}[/{r}]]]')]
 final class GetTile implements IController
@@ -50,21 +50,30 @@ final class GetTile implements IController
         if (array_key_exists('r', $variables)) {
             $url = str_replace('{r}', $variables['r'], $url);
         }
-        $client = HttpFactory::makeClient();
-        $request = new Request('GET', $url);
-        $response = null;
-        try {
-            $response = $client->send($request);
-        } catch (GuzzleException $e) {
-            if (ENABLE_DEBUG_MODE) {
-                throw new \InvalidArgumentException('GuzzleException: ' . $e->getMessage());
-            } else {
-                throw new \InvalidArgumentException('GuzzleException');
-            }
+
+        if (LEAFLET_ENABLE_CACHE) {
+            $png = LeafletTileCacheBuilder::getInstance()->getData([
+                'url' => $url,
+                'tile' => $defaultTile,
+                'z' => $variables['z'],
+                'x' => $variables['x'],
+                'y' => $variables['y'],
+            ])[0];
+        } else {
+            $png = LeafletTileCacheBuilder::request($url);
         }
-        if ($response === null) {
-            throw new \InvalidArgumentException('Tile layer url did not response.');
-        }
-        return $response;
+        
+        return new Response(
+            200,
+            [
+                'Content-Type' => 'image/png',
+                'Cache-Control' => 'public, max-age=31536000, immutable',
+                'Expires' => gmdate('D, d M Y H:i:s', time() + 31536000) . ' GMT',
+                'X-Cache' => LEAFLET_ENABLE_CACHE ? 'HIT' : 'MISS',
+                'X-Cache-Url' => $url,
+                'X-Cache-Size' => strlen($png),
+            ],
+            $png
+        );
     }
 }

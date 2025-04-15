@@ -4,14 +4,13 @@
 {include file='leafletElement' leafletElementID=1}
 <br>
 <p>Map2: Custom coordinates</p>
-{include file='leafletElement' defaultTile='topplus_open_light_grau' leafletElementID=2 googleMapsLat=48.400002 googleMapsLng=9.983333}
+{include file='leafletElement' leafletElementID=2 defaultTile='openstreetmap' googleMapsLat=48.400002 googleMapsLng=9.983333}
 {assign var='defaultTile' value=null}
 {assign var='googleMapsLat' value=null}
 {assign var='googleMapsLng' value=null}
 <br>
 <p>Map3: Access user location</p>
-{include file='leafletElement' tileconnectdirect=true leafletElementID=3 accessUserLocation=true}
-{assign var='tileconnectdirect' value=null}
+{include file='leafletElement' leafletElementID=3 accessUserLocation=true}
 {assign var='accessUserLocation' value=null}
 <br>
 <p>Map4: Bounds</p>
@@ -20,8 +19,12 @@
 {assign var='googleMapsLat' value=null}
 {assign var='googleMapsLng' value=null}
 <br>
-<p>Map5: Googlemaps</p>
-{include file='googleMapsElement' googleMapsElementID=4 googleMapsBounds='{literal}{"southWest": {"latitude": 45.4, "longitude": 9.98}, "northEast": {"latitude": 45.41, "longitude": 9.99}}{/literal}'}
+<p>Map5: Directconnect</p>
+{include file='leafletElement' leafletElementID=5 tileconnectdirect=true}
+{assign var='tileconnectdirect' value=null}
+<br>
+<p>Map10: Googlemaps</p>
+{include file='googleMapsElement' googleMapsElementID=10 googleMapsBounds='{literal}{"southWest": {"latitude": 45.4, "longitude": 9.98}, "northEast": {"latitude": 45.41, "longitude": 9.99}}{/literal}'}
 
 <script data-relocate="true">
 require(["xXSchrandXx/Core/Component/Leaflet/Marker"], function(M) {
