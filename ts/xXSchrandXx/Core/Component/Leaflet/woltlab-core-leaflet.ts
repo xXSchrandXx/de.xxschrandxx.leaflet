@@ -121,7 +121,7 @@ export class WoltlabCoreLeafletElement extends HTMLElement {
                 }
                 L.tileLayer(url, options).addTo(this.#map!);
             } else {
-                L.tileLayer(`${window.WSC_RPC_API_URL}xxschrandxx/leaflet/tile/{z}/{x}/{y}/${defaultTile}/{s}/{r}`, options).addTo(this.#map!);
+                L.tileLayer(`${window.WSC_RPC_API_URL}xxschrandxx/leaflet/tile/{z}/{x}/{y}/${defaultTile}/{s}`, options).addTo(this.#map!);
             }
         }
     }
