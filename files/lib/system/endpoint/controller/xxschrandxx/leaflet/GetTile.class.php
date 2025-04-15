@@ -10,7 +10,7 @@ use wcf\system\endpoint\GetRequest;
 use wcf\system\endpoint\IController;
 use wcf\system\io\HttpFactory;
 
-#[GetRequest('/xxschrandxx/leaflet/tile/{z}/{x}/{y}[/{tile}/{s}/{r}]')]
+#[GetRequest('/xxschrandxx/leaflet/tile/{z}/{x}/{y}[/{tile}[/{s}[/{r}]]]')]
 final class GetTile implements IController
 {
     #[\Override]
@@ -44,8 +44,12 @@ final class GetTile implements IController
         $url = str_replace('{z}', $variables['z'], $url);
         $url = str_replace('{x}', $variables['x'], $url);
         $url = str_replace('{y}', $variables['y'], $url);
-        $url = str_replace('{s}', $variables['s'], $url);
-        $url = str_replace('{r}', $variables['r'], $url);
+        if (array_key_exists('s', $variables)) {
+            $url = str_replace('{s}', $variables['s'], $url);
+        }
+        if (array_key_exists('r', $variables)) {
+            $url = str_replace('{r}', $variables['r'], $url);
+        }
         $client = HttpFactory::makeClient();
         $request = new Request('GET', $url);
         $response = null;
