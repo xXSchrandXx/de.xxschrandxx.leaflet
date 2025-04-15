@@ -3,17 +3,22 @@
 	xmlns="https://www.woltlab.com"
 	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/5.5/language.xsd">
 	<category name="wcf.acp.option">
+		<item name="wcf.acp.option.category.general.system.leaflet"><![CDATA[Leaflet]]></item>
 		<item name="wcf.acp.option.leaflet_default_layer"><![CDATA[Hintergrundkarte]]></item>
 		<item name="wcf.acp.option.leaflet_default_layer.openstreetmap"><![CDATA[Openstreetmap]]></item>
 		<item name="wcf.acp.option.leaflet_default_layer.topplus_open"><![CDATA[TopPlusOpen]]></item>
 		<item name="wcf.acp.option.leaflet_default_layer.topplus_open_grau"><![CDATA[TopPlusOpen Grau]]></item>
 		<item name="wcf.acp.option.leaflet_default_layer.topplus_open_light"><![CDATA[TopPlusOpen Light]]></item>
 		<item name="wcf.acp.option.leaflet_default_layer.topplus_open_light_grau"><![CDATA[TopPlusOpen Light Grau]]></item>
-		<item name="wcf.acp.option.leaflet_default_layer.custom"><![CDATA[Eigen]]></item>
-		<item name="wcf.acp.option.leaflet_custom_layer_link"><![CDATA[URL-Vorlage]]></item>
-		<item name="wcf.acp.option.leaflet_custom_layer_link.description"><![CDATA[{s} steht für eine der verfügbaren Subdomänen (wird sequenziell verwendet, um die Anzahl paralleler Browseranfragen pro Domäne zu begrenzen; Subdomänenwerte werden in den Optionen angegeben; a, b oder c sind standardmäßig vorgegeben und können weggelassen werden), {z} – Zoomstufe, {x} und {y} – Kachelkoordinaten. {r} kann verwendet werden, um der URL „@2x“ hinzuzufügen und Retina-Kacheln zu laden. <a href="https://leafletjs.com/reference.html#tilelayer">leafletjs</a>]]></item>
-		<item name="wcf.acp.option.leaflet_custom_layer_host"><![CDATA[Anzeigehostname]]></item>
-		<item name="wcf.acp.option.leaflet_custom_layer_url"><![CDATA[Verlinkung]]></item>
+		<item name="wcf.acp.option.leaflet_default_layer.custom"><![CDATA[Eigene URL-Vorlage]]></item>
+		<item name="wcf.acp.option.leaflet_default_connection"><![CDATA[Direktverbindung]]></item>
+		<item name="wcf.acp.option.leaflet_default_connection.description"><![CDATA[Aktiviert bzw. deaktiviert, dass standardmäßig direkt zum Server weitergeleitet wird. Wenn nicht aktiv werden Anfragen über diesen Server gestellt.]]></item>
+		<item name="wcf.acp.option.leaflet_enable_cache"><![CDATA[Cache aktivieren]]></item>
+		<item name="wcf.acp.option.leaflet_custom_layer_urltemplate"><![CDATA[Eigene URL-Vorlage]]></item>
+		<item name="wcf.acp.option.leaflet_custom_layer_urltemplate.description"><![CDATA[<kbd>{z}</kbd> – Zoomstufe, <kbd>{x}</kbd> und <kbd>{y}</kbd> – Kachelkoordinaten, <kbd>{s}</kbd> steht für eine der verfügbaren Subdomänen (wird sequenziell verwendet, um die Anzahl paralleler Browseranfragen pro Domäne zu begrenzen; Subdomänenwerte werden in den Optionen angegeben; a, b oder c sind standardmäßig vorgegeben und können weggelassen werden), <kbd>{r}</kbd> kann verwendet werden, um der URL „@2x“ hinzuzufügen und Retina-Kacheln zu laden. <a href="https://leafletjs.com/reference.html#tilelayer">leafletjs</a><br>Das Copyright kann im Text <kbd>wcf.global.leaflet.copy.custom</kbd> angepasst werden.]]></item>
+		<item name="wcf.acp.option.leaflet_custom_layer_host"><![CDATA[Eigene URL-Vorlage Anzeigehostname]]></item>
+		<item name="wcf.acp.option.leaflet_custom_layer_url"><![CDATA[Eigene URL-Vorlage Verlinkung]]></item>
+		<item name="wcf.acp.option.leaflet_replace_googlemaps"><![CDATA[GoogleMaps-Elemente ersetzen]]></item>
 	</category>
 	<category name="wcf.global">
 		<item name="wcf.global.leaflet.copy.openstreetmap"><![CDATA[&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>]]></item>

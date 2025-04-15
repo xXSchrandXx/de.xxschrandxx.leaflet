@@ -5,40 +5,50 @@
 	xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/6.0/option.xsd"
 >
 	<import>
+		<categories>
+			<category name="general.system.leaflet">
+				<parent>general.system</parent>
+			</category>
+		</categories>
 		<options>
-			<option name="LEAFLET_DEFAULT_LAYER">
-				<categoryname>general.system.googleMaps</categoryname>
+			<option name="leaflet_default_layer">
+				<categoryname>general.system.leaflet</categoryname>
 				<optiontype>select</optiontype>
 				<defaultvalue>openstreetmap</defaultvalue>
-				<selectoptions>openstreetmap:wcf.acp.option.leaflet_default_layer.opensteetmap
+				<selectoptions>openstreetmap:wcf.acp.option.leaflet_default_layer.openstreetmap
 topplus_open:wcf.acp.option.leaflet_default_layer.topplus_open
 topplus_open_grau:wcf.acp.option.leaflet_default_layer.topplus_open_grau
 topplus_open_light:wcf.acp.option.leaflet_default_layer.topplus_open_light
 topplus_open_light_grau:wcf.acp.option.leaflet_default_layer.topplus_open_light_grau
 custom:wcf.acp.option.leaflet_default_layer.custom</selectoptions>
 			</option>
-			<option name="LEAFLET_DEFAULT_CONNECTION">
-				<categoryname>general.system.googleMaps</categoryname>
+			<option name="leaflet_default_connection">
+				<categoryname>general.system.leaflet</categoryname>
 				<optiontype>boolean</optiontype>
-				<defaultvalue>true</defaultvalue>
-				<enableoptions>!LEAFLET_ENABLE_CACHE</enableoptions>
+				<defaultvalue>1</defaultvalue>
+				<enableoptions>!leaflet_enable_cache</enableoptions>
 			</option>
-			<option name="LEAFLET_ENABLE_CACHE">
-				<categoryname>general.system.googleMaps</categoryname>
+			<option name="leaflet_enable_cache">
+				<categoryname>general.system.leaflet</categoryname>
 				<optiontype>boolean</optiontype>
-				<defaultvalue>false</defaultvalue>
+				<defaultvalue>0</defaultvalue>
 			</option>
-			<option name="LEAFLET_CUSTOM_LAYER_LINK">
-				<categoryname>general.system.googleMaps</categoryname>
+			<option name="leaflet_custom_layer_urltemplate">
+				<categoryname>general.system.leaflet</categoryname>
 				<optiontype>URL</optiontype>
 			</option>
-			<option name="LEAFLET_CUSTOM_LAYER_HOST">
-				<categoryname>general.system.googleMaps</categoryname>
+			<option name="leaflet_custom_layer_host">
+				<categoryname>general.system.leaflet</categoryname>
 				<optiontype>text</optiontype>
 			</option>
-			<option name="LEAFLET_CUSTOM_LAYER_URL">
-				<categoryname>general.system.googleMaps</categoryname>
-				<optiontype>text</optiontype>
+			<option name="leaflet_custom_layer_url">
+				<categoryname>general.system.leaflet</categoryname>
+				<optiontype>URL</optiontype>
+			</option>
+			<option name="leaflet_replace_googlemaps">
+				<categoryname>general.system.leaflet</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>0</defaultvalue>
 			</option>
 		</options>
 	</import>

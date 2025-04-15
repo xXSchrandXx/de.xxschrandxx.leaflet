@@ -35,7 +35,7 @@ final class GetTile implements IController
                 $url = "https://sgx.geodatenzentrum.de/wmts_topplus_open/tile/1.0.0/web_light_grau/default/WEBMERCATOR/{z}/{y}/{x}.png";
                 break;
             case 'custom':
-                $url = LEAFLET_CUSTOM_LAYER_LINK;
+                $url = LEAFLET_CUSTOM_LAYER_URLTEMPLATE;
                 break;
         }
         if ($url === null || empty($url)) {

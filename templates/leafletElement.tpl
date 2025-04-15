@@ -34,7 +34,7 @@
     zoom={$googleMapsZoom} 
 	lat={$googleMapsLat} 
 	lng={$googleMapsLng} 
-    {if $tileconnectdirect}direct {if $defaultTile=='custom'}urltemplate={LEAFLET_CUSTOM_LAYER_LINK} {/if}{/if}
+    {if $tileconnectdirect}direct {if $defaultTile=='custom'}urltemplate={LEAFLET_CUSTOM_LAYER_URLTEMPLATE} {/if}{/if}
     {if $googleMapsBounds|isset && !$googleMapsBounds|empty}bounds='{$googleMapsBounds}' {/if}
     {if $accessUserLocation|isset && $accessUserLocation}access-user-location {/if}
     {if $leafletHidden}hidden {/if}

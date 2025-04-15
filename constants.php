@@ -1,0 +1,8 @@
+<?php
+
+const LEAFLET_DEFAULT_LAYER = 'openstreetmap';
+const LEAFLET_DEFAULT_CONNECTION = true;
+const LEAFLET_ENABLE_CACHE = false;
+const LEAFLET_CUSTOM_LAYER_URLTEMPLATE = '';
+const LEAFLET_CUSTOM_LAYER_HOST = '';
+const LEAFLET_CUSTOM_LAYER_URL = '';

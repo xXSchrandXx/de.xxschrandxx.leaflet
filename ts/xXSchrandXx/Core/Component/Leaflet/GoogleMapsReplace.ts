@@ -1,11 +1,8 @@
-export function r(defaulttile: string, defaulttilecopy: string) {
-    console.log("Replacing <woltlab-core-google-maps> with <woltlab-core-leaflet>...");
+export function r(defaulttile: string, defaulttilecopy: string, direct: boolean, urltemplate: string = ""): void {
     // Alle <woltlab-core-google-maps> Elemente im DOM finden
     const googleMapsElements = document.getElementsByTagName("woltlab-core-google-maps");
-    console.log("Found <woltlab-core-google-maps> elements: ", googleMapsElements);
 
     Array.from(googleMapsElements).forEach((element) => {
-        console.log("Replacing element: ", element);
         // Neues <woltlab-core-leaflet> Element erstellen
         const leafletElement = document.createElement("woltlab-core-leaflet");
 
@@ -22,6 +19,16 @@ export function r(defaulttile: string, defaulttilecopy: string) {
         // Add default tile copy if not set
         if (!leafletElement.hasAttribute("defaulttilecopy")) {
             leafletElement.setAttribute("defaulttilecopy", defaulttilecopy);
+        }
+
+        // Add direct attribute if not set
+        if (!leafletElement.hasAttribute("direct") && direct) {
+            leafletElement.setAttribute("direct", "");
+        }
+
+        // Add custom URL template if not set
+        if (!leafletElement.hasAttribute("urltemplate") && urltemplate) {
+            leafletElement.setAttribute("urltemplate", urltemplate);
         }
 
         // Inhalte (falls vorhanden) übertragen

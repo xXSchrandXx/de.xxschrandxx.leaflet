@@ -22,5 +22,6 @@
 		<instruction type="template"/>
 		<instruction type="option"/>
 		<instruction type="language"/>
+		<instruction type="templateListener"/>
 	</instructions>
 </package>
