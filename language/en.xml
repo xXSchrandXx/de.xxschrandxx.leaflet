@@ -2,4 +2,30 @@
 <language languagecode="en"
 	xmlns="https://www.woltlab.com"
 	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/5.5/language.xsd">
+	<category name="wcf.acp.option">
+		<item name="wcf.acp.option.category.general.system.leaflet"><![CDATA[Leaflet]]></item>
+		<item name="wcf.acp.option.leaflet_default_layer"><![CDATA[Background map]]></item>
+		<item name="wcf.acp.option.leaflet_default_layer.openstreetmap"><![CDATA[OpenStreetMap]]></item>
+		<item name="wcf.acp.option.leaflet_default_layer.topplus_open"><![CDATA[TopPlusOpen]]></item>
+		<item name="wcf.acp.option.leaflet_default_layer.topplus_open_grau"><![CDATA[TopPlusOpen Gray]]></item>
+		<item name="wcf.acp.option.leaflet_default_layer.topplus_open_light"><![CDATA[TopPlusOpen Light]]></item>
+		<item name="wcf.acp.option.leaflet_default_layer.topplus_open_light_grau"><![CDATA[TopPlusOpen Light Gray]]></item>
+		<item name="wcf.acp.option.leaflet_default_layer.custom"><![CDATA[Custom URL Template]]></item>
+		<item name="wcf.acp.option.leaflet_default_connection"><![CDATA[Direct Connection]]></item>
+		<item name="wcf.acp.option.leaflet_default_connection.description"><![CDATA[Enables or disables direct forwarding to the server by default. If not enabled, requests are made via this server.]]></item>
+		<item name="wcf.acp.option.leaflet_enable_cache"><![CDATA[Enable Cache]]></item>
+		<item name="wcf.acp.option.leaflet_custom_layer_urltemplate"><![CDATA[Custom URL Template]]></item>
+		<item name="wcf.acp.option.leaflet_custom_layer_urltemplate.description"><![CDATA[<kbd>{z}</kbd> – Zoom level, <kbd>{x}</kbd> and <kbd>{y}</kbd> – Tile coordinates, <kbd>{s}</kbd> represents one of the available subdomains (used sequentially to limit the number of parallel browser requests per domain; subdomain values are specified in the options; a, b, or c are predefined by default and can be omitted), <kbd>{r}</kbd> can be used to add "@2x" to the URL and load Retina tiles. <a href="https://leafletjs.com/reference.html#tilelayer">leafletjs</a><br>The copyright can be adjusted in the text <kbd>wcf.global.leaflet.copy.custom</kbd>.]]></item>
+		<item name="wcf.acp.option.leaflet_custom_layer_host"><![CDATA[Custom URL Template Display Hostname]]></item>
+		<item name="wcf.acp.option.leaflet_custom_layer_url"><![CDATA[Custom URL Template Link]]></item>
+		<item name="wcf.acp.option.leaflet_replace_googlemaps"><![CDATA[Replace GoogleMaps Elements]]></item>
+	</category>
+	<category name="wcf.global">
+		<item name="wcf.global.leaflet.copy.openstreetmap"><![CDATA[&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>]]></item>
+		<item name="wcf.global.leaflet.copy.topplus_open"><![CDATA[&copy; <a href="http://www.bkg.bund.de/">Bundesamt für Kartographie und Geodäsie ({time time=TIME_NOW type='custom' format='Y'})</a>]]></item>
+		<item name="wcf.global.leaflet.copy.topplus_open_grau"><![CDATA[&copy; <a href="http://www.bkg.bund.de/">Bundesamt für Kartographie und Geodäsie ({time time=TIME_NOW type='custom' format='Y'})</a>]]></item>
+		<item name="wcf.global.leaflet.copy.topplus_open_light"><![CDATA[&copy; <a href="http://www.bkg.bund.de/">Bundesamt für Kartographie und Geodäsie ({time time=TIME_NOW type='custom' format='Y'})]]></item>
+		<item name="wcf.global.leaflet.copy.topplus_open_light_grau"><![CDATA[&copy; <a href="http://www.bkg.bund.de/">Bundesamt für Kartographie und Geodäsie ({time time=TIME_NOW type='custom' format='Y'})</a>]]></item>
+		<item name="wcf.global.leaflet.copy.custom"><![CDATA[Placeholder]]></item>
+	</category>
 </language>
