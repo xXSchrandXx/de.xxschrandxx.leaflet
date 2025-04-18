@@ -1,3 +1,10 @@
+/**
+ * Provides functions to add markers to a map.
+ *
+ * @author Marcel Werk - Modified by xXSchrandXx
+ * @copyright  2001-2022 WoltLab GmbH
+ * @license  GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
+ */
 
 import * as L from "leaflet";
 import WoltlabCoreLeafletElement from "./woltlab-core-leaflet";

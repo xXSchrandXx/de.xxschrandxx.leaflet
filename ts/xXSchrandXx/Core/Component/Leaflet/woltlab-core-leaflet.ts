@@ -1,5 +1,9 @@
 /**
  * The `<woltlab-core-google-maps>` element creates a map via LeafletJS.
+ *
+ * @author Marcel Werk - Modified by xXSchrandXx
+ * @copyright 2001-2022 WoltLab GmbH
+ * @license GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  */
 
 import * as L from "leaflet";

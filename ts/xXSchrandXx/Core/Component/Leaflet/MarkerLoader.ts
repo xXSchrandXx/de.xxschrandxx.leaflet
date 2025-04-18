@@ -1,3 +1,10 @@
+/**
+ * Handles a large map with many markers where (new) markers are loaded via AJAX.
+ *
+ * @author Marcel Werk - Modified by xXSchrandXx
+ * @copyright  2001-2022 WoltLab GmbH
+ * @license  GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
+ */
 
 import * as L from "leaflet";
 import { dboAction } from "WoltLabSuite/Core/Ajax";
