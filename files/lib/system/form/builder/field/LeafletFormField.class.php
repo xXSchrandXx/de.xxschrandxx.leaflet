@@ -69,7 +69,7 @@ class LeafletFormField extends AbstractFormField
             return null;
         }
         try {
-            return $latlng = JSON::decode($this->getValue());
+            return JSON::decode($this->getValue());
         } catch (\Exception $e) {
         }
 
