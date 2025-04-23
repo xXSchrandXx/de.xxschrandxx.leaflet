@@ -18,6 +18,11 @@ class LeafletFormField extends AbstractFormField
     protected $templateName = 'shared_leafletFormField';
 
     /**
+     * Weather locate is enabled
+     */
+    protected $locate = false;
+
+    /**
      * @inheritDoc
      */
     public function readValue()
@@ -34,6 +39,18 @@ class LeafletFormField extends AbstractFormField
         }
 
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getHtmlVariables()
+    {
+        $variables = parent::getHtmlVariables();
+
+        $variables['accessUserLocation'] = $this->locate;
+
+        return $variables;
     }
 
     /**
@@ -74,5 +91,16 @@ class LeafletFormField extends AbstractFormField
         }
 
         return null;
+    }
+
+    /**
+     * Sets weather locate is enabled
+     * @param bool $locate
+     */
+    public function locate(bool $locate = true): self
+    {
+        $this->locate = $locate;
+
+        return $this;
     }
 }

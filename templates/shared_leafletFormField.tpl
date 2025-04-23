@@ -10,9 +10,6 @@
 <script data-relocate="true">
     require(["xXSchrandXx/Core/Form/Builder/Field/Controller/Leaflet"], function(L) {
         var field = new L('{$field->getPrefixedId()|encodeJS}');
-        field.init();
-        {if $accessUserLocation|isset && $accessUserLocation}
-            field.#locate();
-        {/if}
+        field.init({if $accessUserLocation|isset && $accessUserLocation}true{/if});
     });
 </script>

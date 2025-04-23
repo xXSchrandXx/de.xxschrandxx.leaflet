@@ -1,5 +1,6 @@
 import L from "leaflet";
 import WoltlabCoreLeafletElement from "xXSchrandXx/Core/Component/Leaflet/woltlab-core-leaflet";
+import { confirmationFactory } from "WoltLabSuite/Core/Component/Confirmation";
 
 class Leaflet {
     protected readonly _formFieldContainer: HTMLElement;
@@ -23,55 +24,84 @@ class Leaflet {
         if (this._map === null) {
             throw new TypeError("map for \"" + fieldId + "\" not found.");
         }
-
         this.#markerLoaded = new Promise<void>((resolve) => {
             this.#markerLoadedResolve = resolve;
         });
+        this.latlng = this._formField.value !== "" ? JSON.parse(this._formField.value) : undefined;
     }
 
-    async setLatLng(latlng: L.LatLng): Promise<void> {
-        await this.#markerLoaded;
+    async setLatLng(latlng: L.LatLng, alreadyMoved: boolean = false): Promise<void> {
+        if (!alreadyMoved) {
+            await this.#markerLoaded;
+            console.log("setLatLng", latlng, this.marker.getLatLng(), this.latlng);
+            this.marker.setLatLng(latlng);
+        }
 
         this.latlng = latlng;
-        this.marker.setLatLng(this.latlng);
         this._map.setAttribute("lat", latlng.lat.toString());
         this._map.setAttribute("lng", latlng.lng.toString());
         this._formField.value = JSON.stringify({ lat: latlng.lat, lng: latlng.lng });;
     }
 
-    async #locate(): Promise<void> {
-        await this.#markerLoaded;
-
-        var map: L.Map = (await this._map.getMap());
-        map.locate({setView: true});
-        if (this.latlng === undefined) {
-            map.on("locationfound", (e: L.LocationEvent) => {
-                this.setLatLng(e.latlng);
-            });
-        }
+    async locate(): Promise<void> {
+        (await this._map.getMap()).locate({setView: true});
+        const result = confirmationFactory()
+            .custom("Set to your location?")
+            .withoutMessage();
+        (await this._map.getMap()).once("locationfound", async (e: L.LocationEvent) => {
+            if (await result) {
+                this.marker = L.marker(e.latlng, {
+                    draggable: true
+                });
+                if (this.#markerLoadedResolve) {
+                    this.#markerLoadedResolve();
+                    this.#markerLoadedResolve = undefined;
+                }
+                await this.setLatLng(e.latlng, true);
+                (await this._map.getMap()).stopLocate();
+            }
+        });
     }
 
-    async init(): Promise<void> {
+    async init(locate: boolean = false): Promise<void> {
         if (this.latlng === undefined) {
-            this.latlng = new L.LatLng(this._map.lat, this._map.lng);
+            if (locate) {
+                this.locate();
+            }
+            if (this.marker === undefined) {
+                (await this._map.getMap()).once("click", async (e: L.LeafletMouseEvent) => {
+                    this.marker = L.marker(e.latlng, {
+                        draggable: true
+                    });
+                    if (this.#markerLoadedResolve) {
+                        this.#markerLoadedResolve();
+                        this.#markerLoadedResolve = undefined;
+                    }
+                    await this.setLatLng(e.latlng, true);
+                });
+            }
         } else {
-            this.setLatLng(this.latlng);
+            this.marker = L.marker(this.latlng, {
+                draggable: true
+            });
+            if (this.#markerLoadedResolve) {
+                this.#markerLoadedResolve();
+                this.#markerLoadedResolve = undefined;
+            }
+            await this.setLatLng(this.latlng, true);
         }
-        if (this.latlng === undefined) {
-            throw new TypeError("latlng is undefined");
-        }
-        this.marker = L.marker(this.latlng, {
-            draggable: true
-        });
+
+        await this.#markerLoaded;
+
         this.marker.addTo(await this._map.getMap());
-        this.marker.on("dragend", (e: L.DragEndEvent) => {
-            this.setLatLng(e.target.getLatLng());
+        this.marker.on("dragend", async (e: L.DragEndEvent) => {
+            console.log("dragend");
+            await this.setLatLng(e.target.getLatLng(), true);
         });
-        
-        if (this.#markerLoadedResolve) {
-            this.#markerLoadedResolve();
-            this.#markerLoadedResolve = undefined;
-        }
+        (await this._map.getMap()).on("click", async (e: L.LeafletMouseEvent) => {
+            console.log("clicked", e);
+            await this.setLatLng(e.latlng);
+        });
     }
 }
 
