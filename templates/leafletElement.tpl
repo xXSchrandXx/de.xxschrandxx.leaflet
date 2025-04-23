@@ -27,7 +27,7 @@
 {/if}
 
 <woltlab-core-leaflet 
-    id={$leafletElementID} 
+    id={$leafletElementID|encodeJS} 
     class='googleMap' 
     defaulttile={$defaultTile} 
     defaulttilecopy='wcf.global.leaflet.copy.{$defaultTile}' 

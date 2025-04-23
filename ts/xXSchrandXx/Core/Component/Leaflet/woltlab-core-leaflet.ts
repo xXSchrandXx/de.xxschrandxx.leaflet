@@ -163,6 +163,11 @@ export class WoltlabCoreLeafletElement extends HTMLElement {
         return M.addMarker(this, lat, lng, title, popup, focus);
     }
 
+    async #addDraggableMarker(lat: number, lng: number, title?: string, popup?: L.Content, focus?: boolean, ): Promise<L.Marker> {
+        await this.#mapLoaded;
+        return M.addDraggableMarker(this, lat, lng, title, popup, focus);
+    }
+
     #validate(): void {
         if (!this.defaultTile) {
             throw new TypeError("Must provide a default tile.");
