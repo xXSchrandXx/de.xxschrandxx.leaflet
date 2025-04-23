@@ -3,13 +3,14 @@
 namespace wcf\system\form\builder\field;
 
 use wcf\system\form\builder\field\validation\FormFieldValidationError;
+use wcf\util\JSON;
 
 class LeafletFormField extends AbstractFormField
 {
     /**
      * @inheritDoc
      */
-    protected $javaScriptDataHandlerModule = 'xXSchrandXx/Core/Form/Builder/Field/LatLng';
+    protected $javaScriptDataHandlerModule = 'WoltLabSuite/Core/Form/Builder/Field/Value';
 
     /**
      * @inheritDoc
@@ -21,8 +22,6 @@ class LeafletFormField extends AbstractFormField
      */
     public function readValue()
     {
-        wcfDebug($this->getDocument());
-
         if (
             $this->getDocument()->hasRequestData($this->getPrefixedId())
             && \is_string($this->getDocument()->getRequestData($this->getPrefixedId()))
@@ -49,13 +48,31 @@ class LeafletFormField extends AbstractFormField
                 $this->addValidationError(new FormFieldValidationError('empty'));
             }
         } else {
-            // @see StyleAddForm::readFormParameters()
-            if (!\preg_match('~rgba\(\d{1,3}, ?\d{1,3}, ?\d{1,3}, ?(1|1\.00?|0|0?\.[0-9]{1,2})\)~', $this->getValue())) {
-                $this->addValidationError(new FormFieldValidationError(
-                    'invalid',
-                    'wcf.style.colorPicker.error.invalidColor'
-                ));
+            try {
+                $latlng = JSON::decode($this->getValue());
+                if (!isset($latlng['lat']) || !isset($latlng['lng'])) {
+                    $this->addValidationError(new FormFieldValidationError('invalid'));
+                }
+            } catch (\Exception $e) {
+                $this->addValidationError(new FormFieldValidationError('invalid'));
             }
         }
+    }
+
+    /**
+     * Returns the value as array of this field or null if no value has been set.
+     * @return array|null
+     */
+    public function getArrayValue()
+    {
+        if ($this->getValue() === null) {
+            return null;
+        }
+        try {
+            return $latlng = JSON::decode($this->getValue());
+        } catch (\Exception $e) {
+        }
+
+        return null;
     }
 }
