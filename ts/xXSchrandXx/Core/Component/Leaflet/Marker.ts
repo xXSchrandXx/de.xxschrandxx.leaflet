@@ -16,7 +16,7 @@ export async function addMarkerById(
   longitude: number,
   title?: string,
   popup?: L.Content,
-  focus?: boolean,
+  focus?: boolean
 ): Promise<L.Marker> {
   const element = document.getElementById(id) as WoltlabCoreLeafletElement;
   return addMarker(element, latitude, longitude, title, popup, focus);
@@ -28,11 +28,11 @@ export async function addMarker(
   longitude: number,
   title?: string,
   popup?: L.Content,
-  focus?: boolean,
+  focus?: boolean
 ): Promise<L.Marker> {
   const marker = new L.Marker(new L.LatLng(latitude, longitude), {
     title: title,
-    autoPan: focus,
+    autoPan: focus
   });
   if (popup !== undefined) {
     marker.bindPopup(popup);
@@ -47,19 +47,19 @@ export async function addDraggableMarkerById(
   longitude?: number,
   title?: string,
   popup?: L.Content,
-  focus?: boolean,
+  focus?: boolean
 ): Promise<L.Marker> {
   const element = document.getElementById(id) as WoltlabCoreLeafletElement;
   return addDraggableMarker(element, latitude, longitude, title, popup, focus);
 }
 
-  export async function addDraggableMarker(
+export async function addDraggableMarker(
   element: WoltlabCoreLeafletElement,
   latitude?: number,
   longitude?: number,
   title?: string,
   popup?: L.Content,
-  focus?: boolean,
+  focus?: boolean
 ): Promise<L.Marker> {
   if (latitude === undefined) {
     latitude = element.lat;
@@ -73,7 +73,7 @@ export async function addDraggableMarkerById(
   const marker = new L.Marker(new L.LatLng(latitude, longitude), {
     draggable: true,
     title: title,
-    autoPan: focus,
+    autoPan: focus
   });
   if (popup !== undefined) {
     marker.bindPopup(popup);

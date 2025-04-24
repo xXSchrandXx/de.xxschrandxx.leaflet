@@ -81,10 +81,10 @@ class MarkerLoader {
         eastLongitude: northEast.lng,
         northLatitude: northEast.lat,
         southLatitude: southWest.lat,
-        westLongitude: southWest.lng,
+        westLongitude: southWest.lng
       })
       .dispatch()) as ResponseGetMapMarkers;
-    
+
     response.markers.forEach((data) => {
       this.#addMarker(data);
     });
@@ -96,14 +96,14 @@ class MarkerLoader {
     }
 
     if (data.objectIDs) {
-      data.objectIDs.forEach(objectID => {
+      data.objectIDs.forEach((objectID) => {
         if (this.#objectIDs.includes(objectID)) {
           return;
         }
       });
     }
 
-    const marker = (await M.addMarker(this.#leaflet, data.latitude, data.longitude, data.title));
+    const marker = await M.addMarker(this.#leaflet, data.latitude, data.longitude, data.title);
 
     if (data.infoWindow) {
       const content = document.createElement("div");
@@ -159,7 +159,7 @@ class MarkerLoader {
 export async function setup(
   leaflet: WoltlabCoreLeafletElement,
   actionClassName: string,
-  additionalParameters: AdditionalParameters,
+  additionalParameters: AdditionalParameters
 ): Promise<void> {
   new MarkerLoader(leaflet, actionClassName, additionalParameters);
 }

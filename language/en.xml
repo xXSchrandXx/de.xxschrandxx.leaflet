@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <language languagecode="en"
 	xmlns="https://www.woltlab.com"
-	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/5.5/language.xsd">
+	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/5.5/language.xsd">
 	<category name="wcf.acp.option">
 		<item name="wcf.acp.option.category.general.system.leaflet"><![CDATA[Leaflet]]></item>
 		<item name="wcf.acp.option.leaflet_default_layer"><![CDATA[Background map]]></item>
@@ -27,5 +28,8 @@
 		<item name="wcf.global.leaflet.copy.topplus_open_light"><![CDATA[&copy; <a href="http://www.bkg.bund.de/">Bundesamt für Kartographie und Geodäsie ({time time=TIME_NOW type='custom' format='Y'})]]></item>
 		<item name="wcf.global.leaflet.copy.topplus_open_light_grau"><![CDATA[&copy; <a href="http://www.bkg.bund.de/">Bundesamt für Kartographie und Geodäsie ({time time=TIME_NOW type='custom' format='Y'})</a>]]></item>
 		<item name="wcf.global.leaflet.copy.custom"><![CDATA[Placeholder]]></item>
+		<item name="wcf.global.leaflet.formfield.label"><![CDATA[Position]]></item>
+		<item name="wcf.global.leaflet.formfield.description"><![CDATA[Add a marker by clicking on it or drag the existing marker to the desired position.]]></item>
+		<item name="wcf.global.leaflet.formfield.locate"><![CDATA[Should the position be set to your location?]]></item>
 	</category>
 </language>
