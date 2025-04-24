@@ -2,8 +2,8 @@
 
 namespace wcf\system\form\builder\field;
 
+use wcf\system\exception\SystemException;
 use wcf\system\form\builder\field\validation\FormFieldValidationError;
-use wcf\system\WCF;
 use wcf\util\JSON;
 
 class LeafletFormField extends AbstractFormField
@@ -80,7 +80,7 @@ class LeafletFormField extends AbstractFormField
                 if (!isset($latlng['lat']) || !isset($latlng['lng'])) {
                     $this->addValidationError(new FormFieldValidationError('invalid'));
                 }
-            } catch (\Exception $e) {
+            } catch (SystemException $e) {
                 $this->addValidationError(new FormFieldValidationError('invalid'));
             }
         }
@@ -97,7 +97,7 @@ class LeafletFormField extends AbstractFormField
         }
         try {
             return JSON::decode($this->getValue());
-        } catch (\Exception $e) {
+        } catch (SystemException $e) {
         }
 
         return null;
