@@ -1,6 +1,7 @@
 import L from "leaflet";
 import WoltlabCoreLeafletElement from "xXSchrandXx/Core/Component/Leaflet/woltlab-core-leaflet";
 import { confirmationFactory } from "WoltLabSuite/Core/Component/Confirmation";
+import Language from "WoltLabSuite/Core/Language";
 
 class Leaflet {
     protected readonly _formFieldContainer: HTMLElement;
@@ -30,10 +31,9 @@ class Leaflet {
         this.latlng = this._formField.value !== "" ? JSON.parse(this._formField.value) : undefined;
     }
 
-    async setLatLng(latlng: L.LatLng, alreadyMoved: boolean = false): Promise<void> {
-        if (!alreadyMoved) {
+    async setLatLng(latlng: L.LatLng, move: boolean = true): Promise<void> {
+        if (move) {
             await this.#markerLoaded;
-            console.log("setLatLng", latlng, this.marker.getLatLng(), this.latlng);
             this.marker.setLatLng(latlng);
         }
 
@@ -46,7 +46,7 @@ class Leaflet {
     async locate(): Promise<void> {
         (await this._map.getMap()).locate({setView: true});
         const result = confirmationFactory()
-            .custom("Set to your location?")
+            .custom(Language.getPhrase('wcf.global.leaflet.formfield.locate'))
             .withoutMessage();
         (await this._map.getMap()).once("locationfound", async (e: L.LocationEvent) => {
             if (await result) {
@@ -57,7 +57,7 @@ class Leaflet {
                     this.#markerLoadedResolve();
                     this.#markerLoadedResolve = undefined;
                 }
-                await this.setLatLng(e.latlng, true);
+                await this.setLatLng(e.latlng, false);
                 (await this._map.getMap()).stopLocate();
             }
         });
@@ -77,7 +77,7 @@ class Leaflet {
                         this.#markerLoadedResolve();
                         this.#markerLoadedResolve = undefined;
                     }
-                    await this.setLatLng(e.latlng, true);
+                    await this.setLatLng(e.latlng, false);
                 });
             }
         } else {
@@ -88,18 +88,17 @@ class Leaflet {
                 this.#markerLoadedResolve();
                 this.#markerLoadedResolve = undefined;
             }
-            await this.setLatLng(this.latlng, true);
+            (await this._map.getMap()).panTo(this.latlng);
+            await this.setLatLng(this.latlng, false);
         }
 
         await this.#markerLoaded;
 
         this.marker.addTo(await this._map.getMap());
         this.marker.on("dragend", async (e: L.DragEndEvent) => {
-            console.log("dragend");
-            await this.setLatLng(e.target.getLatLng(), true);
+            await this.setLatLng(e.target.getLatLng(), false);
         });
         (await this._map.getMap()).on("click", async (e: L.LeafletMouseEvent) => {
-            console.log("clicked", e);
             await this.setLatLng(e.latlng);
         });
     }

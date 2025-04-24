@@ -27,5 +27,8 @@
 		<item name="wcf.global.leaflet.copy.topplus_open_light"><![CDATA[&copy; <a href="http://www.bkg.bund.de/">Bundesamt für Kartographie und Geodäsie ({time time=TIME_NOW type='custom' format='Y'})]]></item>
 		<item name="wcf.global.leaflet.copy.topplus_open_light_grau"><![CDATA[&copy; <a href="http://www.bkg.bund.de/">Bundesamt für Kartographie und Geodäsie ({time time=TIME_NOW type='custom' format='Y'})</a>]]></item>
 		<item name="wcf.global.leaflet.copy.custom"><![CDATA[Placeholder]]></item>
+		<item name="wcf.global.leaflet.formfield.label"><![CDATA[Position]]></item>
+		<item name="wcf.global.leaflet.formfield.description"><![CDATA[Füge einen Marker durch klicken hinzu oder ziehe den vorhanden auf die gewünschte Position.]]></item>
+		<item name="wcf.global.leaflet.formfield.locate"><![CDATA[Soll die Position auf deinen Standort gesetzt werden?]]></item>
 	</category>
 </language>

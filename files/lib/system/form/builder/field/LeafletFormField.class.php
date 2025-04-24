@@ -3,6 +3,7 @@
 namespace wcf\system\form\builder\field;
 
 use wcf\system\form\builder\field\validation\FormFieldValidationError;
+use wcf\system\WCF;
 use wcf\util\JSON;
 
 class LeafletFormField extends AbstractFormField
@@ -21,6 +22,15 @@ class LeafletFormField extends AbstractFormField
      * Weather locate is enabled
      */
     protected $locate = false;
+
+    /**
+     * @inheritDoc
+     */
+    public function __construct()
+    {
+        $this->label('wcf.global.leaflet.formfield.label');
+        $this->description('wcf.global.leaflet.formfield.description');
+    }
 
     /**
      * @inheritDoc

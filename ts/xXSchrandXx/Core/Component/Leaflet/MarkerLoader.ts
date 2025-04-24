@@ -54,12 +54,14 @@ class MarkerLoader {
   async #initLoadMarkers(): Promise<void> {
     this.#map = await this.#leaflet.getMap();
     if (this.#map.getBounds()) {
-      // The map has already been loaded and the 'idle'
-      // event listener is therefore not called initially.
+      // The map has already been loaded
       await this.#loadMarkers();
     }
 
-    this.#map.addEventListener("idle", () => {
+    this.#map.addEventListener("moveend", () => {
+      void this.#loadMarkers();
+    });
+    this.#map.addEventListener("zoomend", () => {
       void this.#loadMarkers();
     });
   }
@@ -82,13 +84,25 @@ class MarkerLoader {
         westLongitude: southWest.lng,
       })
       .dispatch()) as ResponseGetMapMarkers;
-
+    
     response.markers.forEach((data) => {
       this.#addMarker(data);
     });
   }
 
   async #addMarker(data: MarkerData) {
+    if (data.objectID && this.#objectIDs.includes(data.objectID)) {
+      return;
+    }
+
+    if (data.objectIDs) {
+      data.objectIDs.forEach(objectID => {
+        if (this.#objectIDs.includes(objectID)) {
+          return;
+        }
+      });
+    }
+
     const marker = (await M.addMarker(this.#leaflet, data.latitude, data.longitude, data.title));
 
     if (data.infoWindow) {
@@ -100,14 +114,12 @@ class MarkerLoader {
 
       if (data.dialog) {
         let dialog: WoltlabCoreDialogElement;
-        marker.addEventListener("domready", () => {
-          const button = content.querySelector<HTMLElement>(".jsButtonShowDialog");
-          button?.addEventListener("click", () => {
-            if (!dialog) {
-              dialog = dialogFactory().fromHtml(data.dialog!).withoutControls();
-            }
-            dialog.show(button.dataset.title || button.textContent!);
-          });
+        const button = content.querySelector<HTMLElement>(".jsButtonShowDialog");
+        button?.addEventListener("click", () => {
+          if (!dialog) {
+            dialog = dialogFactory().fromHtml(data.dialog!).withoutControls();
+          }
+          dialog.show(button.dataset.title || button.textContent!);
         });
       }
     }

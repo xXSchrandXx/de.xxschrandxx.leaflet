@@ -8,8 +8,10 @@
 {include file='leafletElement' leafletElementID=$field->getPrefixedId()|concat:"_map"}
 <input type="hidden" id="{$field->getPrefixedId()}" name="{$field->getPrefixedId()}" value{if $field->getValue() !== null && !$field->getValue()|empty}="{$field->getValue()}"{/if} />
 <script data-relocate="true">
-    require(["xXSchrandXx/Core/Form/Builder/Field/Controller/Leaflet"], function(L) {
-        var field = new L('{$field->getPrefixedId()|encodeJS}');
+    {jsphrase name='wcf.global.leaflet.formfield.locate'}
+    require(["xXSchrandXx/Core/Form/Builder/Field/Controller/Leaflet"], function(Leaflet) {
+
+        var field = new Leaflet('{$field->getPrefixedId()|encodeJS}');
         field.init({if $accessUserLocation|isset && $accessUserLocation}true{/if});
     });
 </script>
