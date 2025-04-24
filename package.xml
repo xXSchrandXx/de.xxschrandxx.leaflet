@@ -24,4 +24,10 @@
 		<instruction type="language"/>
 		<instruction type="templateListener"/>
 	</instructions>
+
+	<instruction type="update" fromversion="1.0.0">
+		<instruction type="file"/>
+		<instruction type="template"/>
+		<instruction type="language"/>
+	</instruction>
 </package>
