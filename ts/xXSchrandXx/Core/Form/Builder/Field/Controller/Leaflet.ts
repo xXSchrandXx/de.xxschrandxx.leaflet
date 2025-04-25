@@ -1,12 +1,12 @@
 import L from "leaflet";
-import WoltlabCoreLeafletElement from "xXSchrandXx/Core/Component/Leaflet/woltlab-core-leaflet";
+import LeafletElement from "xXSchrandXx/Core/Component/Leaflet/leaflet";
 import { confirmationFactory } from "WoltLabSuite/Core/Component/Confirmation";
 import Language from "WoltLabSuite/Core/Language";
 
 class Leaflet {
   protected readonly _formFieldContainer: HTMLElement;
   protected readonly _formField: HTMLInputElement;
-  protected readonly _map: WoltlabCoreLeafletElement;
+  protected readonly _map: LeafletElement;
   protected latlng: L.LatLng | undefined;
   protected marker: L.Marker;
   #markerLoaded: Promise<void>;
@@ -21,7 +21,7 @@ class Leaflet {
     if (this._formField === null) {
       throw new TypeError(`field "${fieldId}" not found.`);
     }
-    this._map = document.getElementById(fieldId + "_map") as WoltlabCoreLeafletElement;
+    this._map = document.getElementById(fieldId + "_map") as LeafletElement;
     if (this._map === null) {
       throw new TypeError(`map for "${fieldId}" not found.`);
     }

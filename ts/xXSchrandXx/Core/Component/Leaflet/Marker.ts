@@ -7,8 +7,8 @@
  */
 
 import * as L from "leaflet";
-import WoltlabCoreLeafletElement from "./woltlab-core-leaflet";
-import "./woltlab-core-leaflet";
+import LeafletElement from "./leaflet";
+import "./leaflet";
 
 export async function addMarkerById(
   id: string,
@@ -18,12 +18,12 @@ export async function addMarkerById(
   popup?: L.Content,
   focus?: boolean
 ): Promise<L.Marker> {
-  const element = document.getElementById(id) as WoltlabCoreLeafletElement;
+  const element = document.getElementById(id) as LeafletElement;
   return addMarker(element, latitude, longitude, title, popup, focus);
 }
 
 export async function addMarker(
-  element: WoltlabCoreLeafletElement,
+  element: LeafletElement,
   latitude: number,
   longitude: number,
   title?: string,
@@ -49,12 +49,12 @@ export async function addDraggableMarkerById(
   popup?: L.Content,
   focus?: boolean
 ): Promise<L.Marker> {
-  const element = document.getElementById(id) as WoltlabCoreLeafletElement;
+  const element = document.getElementById(id) as LeafletElement;
   return addDraggableMarker(element, latitude, longitude, title, popup, focus);
 }
 
 export async function addDraggableMarker(
-  element: WoltlabCoreLeafletElement,
+  element: LeafletElement,
   latitude?: number,
   longitude?: number,
   title?: string,

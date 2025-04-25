@@ -10,7 +10,7 @@
 <script data-relocate="true">
 	{jsphrase name='wcf.global.leaflet.formfield.locate'}
 	require(["xXSchrandXx/Core/Form/Builder/Field/Controller/Leaflet"], function(Leaflet) {
-		var field = new Leaflet('{$field->getPrefixedId()|encodeJS}');
+		var field = new Leaflet('{$field->getPrefixedId()}');
 		field.init({if $accessUserLocation|isset && $accessUserLocation}true{/if});
 	});
 </script>

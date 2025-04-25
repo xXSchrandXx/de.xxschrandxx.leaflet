@@ -4,7 +4,7 @@
 		<!-- de.xxschrandxx.leaflet -->
 		<packagename>Leaflet integration</packagename>
 		<packagedescription>Leaflet integration</packagedescription>
-		<version>1.0.1</version>
+		<version>1.0.2</version>
 		<date>2025-01-01</date>
 	</packageinformation>
 	<authorinformation>
@@ -24,10 +24,4 @@
 		<instruction type="language"/>
 		<instruction type="templateListener"/>
 	</instructions>
-
-	<instruction type="update" fromversion="1.0.0">
-		<instruction type="file"/>
-		<instruction type="template"/>
-		<instruction type="language"/>
-	</instruction>
 </package>

@@ -9,8 +9,9 @@
 import * as L from "leaflet";
 import * as M from "./Marker";
 import { getPhrase } from "WoltLabSuite/Core/Language";
+import * as EventHandler from "WoltLabSuite/Core/Event/Handler";
 
-export class WoltlabCoreLeafletElement extends HTMLElement {
+export class LeafletElement extends HTMLElement {
   #map?: L.Map;
   #mapLoaded: Promise<void>;
   #mapLoadedResolve?: () => void;
@@ -121,6 +122,13 @@ export class WoltlabCoreLeafletElement extends HTMLElement {
           case "custom":
             url = this.customurl;
             break;
+          default:
+            const urlTemplates: Record<string, string> = {};
+            EventHandler.fire("de.xxschrandxx.leaflet", "UrlTemplateCollecting", urlTemplates);
+            if (urlTemplates[defaultTile]) {
+              url = urlTemplates[defaultTile];
+            }
+            break;
         }
         L.tileLayer(url, options).addTo(this.#map!);
       } else {
@@ -157,12 +165,12 @@ export class WoltlabCoreLeafletElement extends HTMLElement {
     }
   }
 
-  async #addMarker(lat: number, lng: number, title?: string, popup?: L.Content, focus?: boolean): Promise<L.Marker> {
+  async addMarker(lat: number, lng: number, title?: string, popup?: L.Content, focus?: boolean): Promise<L.Marker> {
     await this.#mapLoaded;
     return M.addMarker(this, lat, lng, title, popup, focus);
   }
 
-  async #addDraggableMarker(lat: number, lng: number, title?: string, popup?: L.Content, focus?: boolean): Promise<L.Marker> {
+  async addDraggableMarker(lat: number, lng: number, title?: string, popup?: L.Content, focus?: boolean): Promise<L.Marker> {
     await this.#mapLoaded;
     return M.addDraggableMarker(this, lat, lng, title, popup, focus);
   }
@@ -216,6 +224,6 @@ export class WoltlabCoreLeafletElement extends HTMLElement {
   }
 }
 
-window.customElements.define("woltlab-core-leaflet", WoltlabCoreLeafletElement);
+window.customElements.define("woltlab-core-leaflet", LeafletElement);
 
-export default WoltlabCoreLeafletElement;
+export default LeafletElement;

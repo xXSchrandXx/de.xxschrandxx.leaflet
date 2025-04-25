@@ -1,7 +1,6 @@
 {if !$__leafletInit|isset}
 	{assign var=__leafletInit value=1}
 
-	<link rel="stylesheet" href="{@$__wcf->getPath()}js/3rdParty/leaflet/leaflet.css" />
 	<script data-relocate="true">
 		{jsphrase name='wcf.global.leaflet.copy.openstreetmap'}
 		{jsphrase name='wcf.global.leaflet.copy.topplus_open'}

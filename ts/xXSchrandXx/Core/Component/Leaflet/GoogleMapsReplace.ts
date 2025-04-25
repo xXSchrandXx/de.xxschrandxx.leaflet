@@ -4,7 +4,7 @@ export function r(defaulttile: string, defaulttilecopy: string, direct: boolean,
 
   Array.from(googleMapsElements).forEach((element) => {
     // Neues <woltlab-core-leaflet> Element erstellen
-    const leafletElement = document.createElement("woltlab-core-leaflet");
+    const leafletElement = document.createElement("leaflet");
 
     // Attribute vom alten Element auf das neue Element übertragen
     for (const attr of element.attributes) {

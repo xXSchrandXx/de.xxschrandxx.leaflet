@@ -26,20 +26,20 @@
 	{assign var='leafletHidden' value=false}
 {/if}
 
-<woltlab-core-leaflet 
-	id={$leafletElementID|encodeJS} 
-	class='googleMap' 
-	defaulttile={$defaultTile} 
-	defaulttilecopy='wcf.global.leaflet.copy.{$defaultTile}' 
-	zoom={$googleMapsZoom} 
-	lat={$googleMapsLat} 
-	lng={$googleMapsLng} 
+<leaflet 
+	id="{$leafletElementID|encodeJS}" 
+	class="googleMap" 
+	defaulttile="{$defaultTile}" 
+	defaulttilecopy="wcf.global.leaflet.copy.{$defaultTile}" 
+	zoom="{$googleMapsZoom}" 
+	lat="{$googleMapsLat}" 
+	lng="{$googleMapsLng}" 
 	{if $tileconnectdirect}direct {if $defaultTile=='custom'}urltemplate={LEAFLET_CUSTOM_LAYER_URLTEMPLATE} {/if}{/if}
-	{if $googleMapsBounds|isset && !$googleMapsBounds|empty}bounds='{$googleMapsBounds}' {/if}
+	{if $googleMapsBounds|isset && !$googleMapsBounds|empty}bounds="{$googleMapsBounds}" {/if}
 	{if $accessUserLocation|isset && $accessUserLocation}access-user-location {/if}
 	{if $leafletHidden}hidden {/if}
-	style='z-index: 0'>
-</woltlab-core-leaflet>
+	>
+</leaflet>
 
 {if $leafletHidden}
 	{if $defaultTile == 'openstreetmap'}

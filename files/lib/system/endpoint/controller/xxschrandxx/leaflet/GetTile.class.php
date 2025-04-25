@@ -5,9 +5,12 @@ namespace wcf\system\endpoint\controller\xxschrandxx\leaflet;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use wcf\event\endpoint\UrlTemplateCollecting;
 use wcf\system\cache\builder\LeafletTileCacheBuilder;
 use wcf\system\endpoint\GetRequest;
 use wcf\system\endpoint\IController;
+use wcf\system\event\EventHandler;
+use wcf\system\exception\PermissionDeniedException;
 
 #[GetRequest('/xxschrandxx/leaflet/tile/{z}/{x}/{y}[/{tile}[/{s}[/{r}]]]')]
 final class GetTile implements IController
@@ -15,6 +18,9 @@ final class GetTile implements IController
     #[\Override]
     public function __invoke(ServerRequestInterface $request, array $variables): ResponseInterface
     {
+        if (LEAFLET_DEFAULT_CONNECTION) {
+            throw new PermissionDeniedException();
+        }
         $defaultTile = $variables['tile'] ?? LEAFLET_DEFAULT_LAYER;
         $url = null;
         switch ($defaultTile) {
@@ -35,6 +41,13 @@ final class GetTile implements IController
                 break;
             case 'custom':
                 $url = LEAFLET_CUSTOM_LAYER_URLTEMPLATE;
+                break;
+            default:
+                $event = new UrlTemplateCollecting();
+                EventHandler::getInstance()->fire($event);
+                if (array_key_exists($defaultTile, $event->getTemplates())) {
+                    $url = $event->getTemplates()[$defaultTile];
+                }
                 break;
         }
         if ($url === null || empty($url)) {
