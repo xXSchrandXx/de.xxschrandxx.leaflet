@@ -9,10 +9,11 @@
 			<eventname>javascriptInclude</eventname>
 			<templatecode><![CDATA[{include file='__replaceGoogleMapsJavaScript' application='wcf'}]]></templatecode>
 		</templatelistener>
-		<templatelistener name="">
+		<templatelistener name="leafletAddStylesheet">
 			<environment>user</environment>
 			<templatename>headInclude</templatename>
 			<eventname>stylesheets</eventname>
 			<templatecode><![CDATA[<link rel="stylesheet" href="{$__wcf->getPath()}js/3rdParty/leaflet/leaflet.css">]]></templatecode>
+		</templatelistener>
 	</import>
 </data>
