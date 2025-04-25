@@ -5,7 +5,7 @@ namespace wcf\system\endpoint\controller\xxschrandxx\leaflet;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use wcf\event\endpoint\UrlTemplateCollecting;
+use wcf\event\leaflet\UrlTemplateCollecting;
 use wcf\system\cache\builder\LeafletTileCacheBuilder;
 use wcf\system\endpoint\GetRequest;
 use wcf\system\endpoint\IController;

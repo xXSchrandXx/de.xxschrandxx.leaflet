@@ -1,6 +1,6 @@
 <?php
 
-namespace wcf\event\endpoint;
+namespace wcf\event\leaflet;
 
 use wcf\event\IPsr14Event;
 
