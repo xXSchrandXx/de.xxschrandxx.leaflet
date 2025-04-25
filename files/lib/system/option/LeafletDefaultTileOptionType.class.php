@@ -16,6 +16,10 @@ class LeafletDefaultTileOptionType extends SelectOptionType
         $options = parent::getSelectOptions($option);
         $event = new UrlTemplateCollecting();
         EventHandler::getInstance()->fire($event);
-        return array_merge($options, $event->getTemplates());
+        $collection = [];
+        foreach ($event->getTemplates() as $key => $urlTemplate) {
+            $collection[$key] = "wcf.acp.option.leaflet_default_layer." . $key;
+        }
+        return array_merge($options, $collection);
     }
 }

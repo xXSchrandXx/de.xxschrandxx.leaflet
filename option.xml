@@ -13,7 +13,7 @@
 		<options>
 			<option name="leaflet_default_layer">
 				<categoryname>general.system.leaflet</categoryname>
-				<optiontype>select</optiontype>
+				<optiontype>LeafletDefaultTile</optiontype>
 				<defaultvalue>openstreetmap</defaultvalue>
 				<selectoptions>openstreetmap:wcf.acp.option.leaflet_default_layer.openstreetmap
 topplus_open:wcf.acp.option.leaflet_default_layer.topplus_open
