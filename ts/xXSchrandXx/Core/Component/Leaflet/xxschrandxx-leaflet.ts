@@ -224,6 +224,6 @@ export class LeafletElement extends HTMLElement {
   }
 }
 
-window.customElements.define("woltlab-core-leaflet", LeafletElement);
+window.customElements.define("xxschrandxx-leaflet", LeafletElement);
 
 export default LeafletElement;

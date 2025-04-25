@@ -1,5 +1,5 @@
 import L from "leaflet";
-import LeafletElement from "xXSchrandXx/Core/Component/Leaflet/leaflet";
+import LeafletElement from "xXSchrandXx/Core/Component/Leaflet/xxschrandxx-leaflet";
 import { confirmationFactory } from "WoltLabSuite/Core/Component/Confirmation";
 import Language from "WoltLabSuite/Core/Language";
 

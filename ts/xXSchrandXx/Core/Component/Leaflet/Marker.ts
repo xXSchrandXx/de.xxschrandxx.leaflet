@@ -7,8 +7,8 @@
  */
 
 import * as L from "leaflet";
-import LeafletElement from "./leaflet";
-import "./leaflet";
+import LeafletElement from "./xxschrandxx-leaflet";
+import "./xxschrandxx-leaflet";
 
 export async function addMarkerById(
   id: string,

@@ -8,12 +8,12 @@
 
 import * as L from "leaflet";
 import { dboAction } from "WoltLabSuite/Core/Ajax";
-import WoltlabCoreLeafletElement from "./leaflet";
+import WoltlabCoreLeafletElement from "./xxschrandxx-leaflet";
 import { dialogFactory } from "WoltLabSuite/Core/Component/Dialog";
 import DomUtil from "WoltLabSuite/Core/Dom/Util";
 import WoltlabCoreDialogElement from "WoltLabSuite/Core/Element/woltlab-core-dialog";
 import * as M from "./Marker";
-import "./leaflet";
+import "./xxschrandxx-leaflet";
 
 type AdditionalParameters = Record<string, unknown>;
 
