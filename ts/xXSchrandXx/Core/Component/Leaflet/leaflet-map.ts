@@ -224,6 +224,6 @@ export class LeafletMapElement extends HTMLElement {
   }
 }
 
-window.customElements.define("xxschrandxx-leaflet", LeafletMapElement);
+window.customElements.define("leaflet-map", LeafletMapElement);
 
 export default LeafletMapElement;
