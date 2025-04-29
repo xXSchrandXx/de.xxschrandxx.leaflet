@@ -13,7 +13,6 @@ import { dialogFactory } from "WoltLabSuite/Core/Component/Dialog";
 import DomUtil from "WoltLabSuite/Core/Dom/Util";
 import WoltlabCoreDialogElement from "WoltLabSuite/Core/Element/woltlab-core-dialog";
 import * as M from "xXSchrandXx/Core/Component/Leaflet/Marker";
-import "xXSchrandXx/Core/Component/Leaflet/leaflet-map";
 
 type AdditionalParameters = Record<string, unknown>;
 
