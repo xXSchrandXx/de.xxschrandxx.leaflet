@@ -1,5 +1,5 @@
 /**
- * The `<woltlab-core-google-maps>` element creates a map via LeafletJS.
+ * The `<leaflet-map>` element creates a map via LeafletJS.
  *
  * @author Marcel Werk - Modified by xXSchrandXx
  * @copyright 2001-2022 WoltLab GmbH
@@ -7,11 +7,11 @@
  */
 
 import * as L from "leaflet";
-import * as M from "./Marker";
+import * as M from "xXSchrandXx/Core/Component/Leaflet/Marker";
 import { getPhrase } from "WoltLabSuite/Core/Language";
 import * as EventHandler from "WoltLabSuite/Core/Event/Handler";
 
-export class LeafletElement extends HTMLElement {
+export class LeafletMapElement extends HTMLElement {
   #map?: L.Map;
   #mapLoaded: Promise<void>;
   #mapLoadedResolve?: () => void;
@@ -224,6 +224,6 @@ export class LeafletElement extends HTMLElement {
   }
 }
 
-window.customElements.define("xxschrandxx-leaflet", LeafletElement);
+window.customElements.define("xxschrandxx-leaflet", LeafletMapElement);
 
-export default LeafletElement;
+export default LeafletMapElement;

@@ -7,8 +7,7 @@
  */
 
 import * as L from "leaflet";
-import LeafletElement from "./xxschrandxx-leaflet";
-import "./xxschrandxx-leaflet";
+import LeafletMapElement from "xXSchrandXx/Core/Component/Leaflet/leaflet-map";
 
 export async function addMarkerById(
   id: string,
@@ -18,12 +17,12 @@ export async function addMarkerById(
   popup?: L.Content,
   focus?: boolean
 ): Promise<L.Marker> {
-  const element = document.getElementById(id) as LeafletElement;
+  const element = document.getElementById(id) as LeafletMapElement;
   return addMarker(element, latitude, longitude, title, popup, focus);
 }
 
 export async function addMarker(
-  element: LeafletElement,
+  element: LeafletMapElement,
   latitude: number,
   longitude: number,
   title?: string,
@@ -49,12 +48,12 @@ export async function addDraggableMarkerById(
   popup?: L.Content,
   focus?: boolean
 ): Promise<L.Marker> {
-  const element = document.getElementById(id) as LeafletElement;
+  const element = document.getElementById(id) as LeafletMapElement;
   return addDraggableMarker(element, latitude, longitude, title, popup, focus);
 }
 
 export async function addDraggableMarker(
-  element: LeafletElement,
+  element: LeafletMapElement,
   latitude?: number,
   longitude?: number,
   title?: string,

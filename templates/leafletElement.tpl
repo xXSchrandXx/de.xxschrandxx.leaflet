@@ -26,7 +26,7 @@
 	{assign var='leafletHidden' value=false}
 {/if}
 
-<xxschrandxx-leaflet 
+<leaflet-map 
 	id="{$leafletElementID|encodeJS}" 
 	class="googleMap" 
 	defaulttile="{$defaultTile}" 
@@ -39,7 +39,7 @@
 	{if $accessUserLocation|isset && $accessUserLocation}access-user-location {/if}
 	{if $leafletHidden}hidden {/if}
 	>
-</xxschrandxx-leaflet>
+</leaflet-map>
 
 {if $leafletHidden}
 	{if $defaultTile == 'openstreetmap'}

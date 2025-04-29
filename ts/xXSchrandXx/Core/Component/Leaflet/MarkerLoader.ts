@@ -8,12 +8,12 @@
 
 import * as L from "leaflet";
 import { dboAction } from "WoltLabSuite/Core/Ajax";
-import WoltlabCoreLeafletElement from "./xxschrandxx-leaflet";
+import LeafletMapElement from "xXSchrandXx/Core/Component/Leaflet/leaflet-map";
 import { dialogFactory } from "WoltLabSuite/Core/Component/Dialog";
 import DomUtil from "WoltLabSuite/Core/Dom/Util";
 import WoltlabCoreDialogElement from "WoltLabSuite/Core/Element/woltlab-core-dialog";
-import * as M from "./Marker";
-import "./xxschrandxx-leaflet";
+import * as M from "xXSchrandXx/Core/Component/Leaflet/Marker";
+import "xXSchrandXx/Core/Component/Leaflet/leaflet-map";
 
 type AdditionalParameters = Record<string, unknown>;
 
@@ -34,7 +34,7 @@ type ResponseGetMapMarkers = {
 };
 
 class MarkerLoader {
-  readonly #leaflet: WoltlabCoreLeafletElement;
+  readonly #leaflet: LeafletMapElement;
   #map: L.Map;
   readonly #actionClassName: string;
   readonly #additionalParameters: AdditionalParameters;
@@ -43,7 +43,7 @@ class MarkerLoader {
   #objectIDs: number[] = [];
   #marker: L.Marker[] = [];
 
-  constructor(leaflet: WoltlabCoreLeafletElement, actionClassName: string, additionalParameters: AdditionalParameters) {
+  constructor(leaflet: LeafletMapElement, actionClassName: string, additionalParameters: AdditionalParameters) {
     this.#leaflet = leaflet;
     this.#actionClassName = actionClassName;
     this.#additionalParameters = additionalParameters;
@@ -157,7 +157,7 @@ class MarkerLoader {
 }
 
 export async function setup(
-  leaflet: WoltlabCoreLeafletElement,
+  leaflet: LeafletMapElement,
   actionClassName: string,
   additionalParameters: AdditionalParameters
 ): Promise<void> {

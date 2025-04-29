@@ -1,10 +1,12 @@
+import LeafletMapElement from "xXSchrandXx/Core/Component/Leaflet/leaflet-map";
+
 export function r(defaulttile: string, defaulttilecopy: string, direct: boolean, urltemplate: string = ""): void {
   // Alle <woltlab-core-google-maps> Elemente im DOM finden
   const googleMapsElements = document.getElementsByTagName("woltlab-core-google-maps");
 
   Array.from(googleMapsElements).forEach((element) => {
-    // Neues <woltlab-core-leaflet> Element erstellen
-    const leafletElement = document.createElement("leaflet");
+    // Neues <leaflet-map> Element erstellen
+    const leafletElement = document.createElement("leaflet-map") as LeafletMapElement;
 
     // Attribute vom alten Element auf das neue Element übertragen
     for (const attr of element.attributes) {

@@ -19,6 +19,6 @@
 			}
 		});
 
-		require(["xXSchrandXx/Core/Component/Leaflet/woltlab-core-leaflet"]);
+		require(["xXSchrandXx/Core/Component/Leaflet/leaflet-map"]);
 	</script>
 {/if}
