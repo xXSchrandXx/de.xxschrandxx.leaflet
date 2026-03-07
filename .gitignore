@@ -4,3 +4,4 @@ files/lib/system/api/
 
 *.tar
 *.tar.gz
+package-lock.json
