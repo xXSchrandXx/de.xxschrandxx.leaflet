@@ -1,4 +1,8 @@
 {
+  "name": "@xxschrandxx/de.xxschrandxx.leaflet",
+  "version": "1.0.2",
+  "main": "ts/xXSchrandXx/Core/Component/Leaflet/leaflet-map.ts",
+  "types": "ts/xXSchrandXx/Core/Component/Leaflet/leaflet-map.d.ts",
   "devDependencies": {
     "@types/leaflet": "^1.9.17",
     "@typescript-eslint/eslint-plugin": "^6.5.0",
