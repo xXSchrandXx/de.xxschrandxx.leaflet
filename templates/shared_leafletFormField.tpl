@@ -1,6 +1,6 @@
 {include file='leafletJavaScript'}
 
-{if $field->getValue() !== null && $field->getValue()|is_array && !$field->getValue()|empty}
+{if $field->getArrayValue() !== null && $field->getArrayValue()|is_array && !$field->getArrayValue()|empty}
 	{assign var='googleMapsLat' value=$field->getArrayValue()['lat']}
 	{assign var='googleMapsLng' value=$field->getArrayValue()['lng']}
 {/if}

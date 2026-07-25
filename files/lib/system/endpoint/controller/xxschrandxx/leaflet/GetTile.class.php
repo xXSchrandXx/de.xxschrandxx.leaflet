@@ -12,7 +12,16 @@ use wcf\system\endpoint\IController;
 use wcf\system\event\EventHandler;
 use wcf\system\exception\PermissionDeniedException;
 
-#[GetRequest('/xxschrandxx/leaflet/tile/{z}/{x}/{y}[/{tile}[/{s}[/{r}]]]')]
+/**
+ * Parameters
+ * z=z-coordinate : number
+ * x=x-coordinate : number
+ * y=y-coordinate : number
+ * tile = openstreetmap, topplus_open, topplus_open_grau, topplus_open_light, topplus_open_light_grau, custom or registered through UrlTemplateCollecting
+ * s=sequence value for parralel browsing : number/string
+ * r=weather retina files should be requested : @2x or empty 
+ */
+#[GetRequest('/xxschrandxx/leaflet/tile/{z:\d+}/{x:\d+}/{y:\d+}[/{tile}[/{s}[/{r:(^$:|@2x)}]]]')]
 final class GetTile implements IController
 {
     #[\Override]
@@ -70,6 +79,9 @@ final class GetTile implements IController
                 'z' => $variables['z'],
                 'x' => $variables['x'],
                 'y' => $variables['y'],
+                'r' => $variables['r']
+                // s is used sequentially to help with browser parallel requests per domain limitation
+                // every s value will return the same image
             ])[0];
         } else {
             $png = LeafletTileCacheBuilder::request($url);
@@ -80,10 +92,7 @@ final class GetTile implements IController
             [
                 'Content-Type' => 'image/png',
                 'Cache-Control' => 'public, max-age=31536000, immutable',
-                'Expires' => gmdate('D, d M Y H:i:s', time() + 31536000) . ' GMT',
-                'X-Cache' => LEAFLET_ENABLE_CACHE ? 'HIT' : 'MISS',
-                'X-Cache-Url' => $url,
-                'X-Cache-Size' => strlen($png),
+                'Expires' => gmdate('D, d M Y H:i:s', time() + 31536000) . ' GMT'
             ],
             $png
         );

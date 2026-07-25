@@ -10,13 +10,25 @@ use wcf\system\io\HttpFactory;
 
 class LeafletTileCacheBuilder extends AbstractCacheBuilder
 {
+    public static $neededParameters = [
+        'url', 'tile', 'x', 'y', 'z', 'r'
+        // s is used sequentially to help with browser parallel requests per domain limitation
+        // every s value will return the same image
+        // same would happen for url: {s}.example.domain
+    ];
+
     /**
      * @inheritDoc
      */
     public function getData(array $parameters = [], $arrayIndex = '')
     {
+        foreach (self::$neededParameters as $parameter) {
+            if (!array_key_exists($parameter, $parameters)) {
+                throw new \InvalidArgumentException('Undefined parameter: ' . $parameter);
+            }
+        }
         $url = $parameters['url'];
-        if (!isset($url) && !empty($url)) {
+        if (!isset($url) && empty($url)) {
             throw new \InvalidArgumentException('No tile layer url defined.');
         }
         unset($parameters['url']);
