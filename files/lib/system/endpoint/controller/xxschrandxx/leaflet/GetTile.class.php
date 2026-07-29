@@ -79,9 +79,7 @@ final class GetTile implements IController
                 'z' => $variables['z'],
                 'x' => $variables['x'],
                 'y' => $variables['y'],
-                'r' => $variables['r']
-                // s is used sequentially to help with browser parallel requests per domain limitation
-                // every s value will return the same image
+                'r' => $variables['r'] ?? ''
             ])[0];
         } else {
             $png = LeafletTileCacheBuilder::request($url);
