@@ -6,6 +6,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
 use wcf\system\cache\CacheHandler;
 use wcf\system\exception\SystemException;
+use wcf\system\exception\UserInputException;
 use wcf\system\io\HttpFactory;
 
 class LeafletTileCacheBuilder extends AbstractCacheBuilder
@@ -24,12 +25,12 @@ class LeafletTileCacheBuilder extends AbstractCacheBuilder
     {
         foreach (self::$neededParameters as $parameter) {
             if (!array_key_exists($parameter, $parameters)) {
-                throw new \InvalidArgumentException('Undefined parameter: ' . $parameter);
+                throw new UserInputException($parameter);
             }
         }
         $url = $parameters['url'];
-        if (!isset($url) && empty($url)) {
-            throw new \InvalidArgumentException('No tile layer url defined.');
+        if (!isset($url) || empty($url)) {
+            throw new UserInputException('url');
         }
         unset($parameters['url']);
         $index = CacheHandler::getInstance()->getCacheIndex($parameters);
@@ -79,9 +80,9 @@ class LeafletTileCacheBuilder extends AbstractCacheBuilder
             $response = $client->send($request);
         } catch (GuzzleException $e) {
             if (ENABLE_DEBUG_MODE) {
-                throw new \InvalidArgumentException('GuzzleException: ' . $e->getMessage());
+                throw $e;
             } else {
-                throw new \InvalidArgumentException('GuzzleException');
+                throw new \InvalidArgumentException('GuzzleException, enable debug mode for more information.');
             }
         }
         if ($response === null) {
